@@ -10,21 +10,27 @@ export const findDocumentAuditLogsRoute = authenticatedProcedure
   .input(ZFindDocumentAuditLogsRequestSchema)
   .output(ZFindDocumentAuditLogsResponseSchema)
   .query(async ({ input, ctx }) => {
-    const { teamId } = ctx;
+    // Use teamId from input if provided, otherwise fall back to context
+    const contextTeamId = ctx.teamId;
 
     const {
       page,
       perPage,
       documentId,
+      teamId: inputTeamId,
       cursor,
       filterForRecentActivity,
       orderByColumn,
       orderByDirection,
     } = input;
 
+    // Prefer teamId from input over context
+    const teamId = inputTeamId ?? contextTeamId;
+
     ctx.logger.info({
       input: {
         documentId,
+        teamId,
       },
     });
 

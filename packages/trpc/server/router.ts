@@ -2,6 +2,7 @@ import { adminRouter } from './admin-router/router';
 import { apiTokenRouter } from './api-token-router/router';
 import { authRouter } from './auth-router/router';
 import { documentRouter } from './document-router/router';
+import { employeeRouter } from './employee-router/router';
 import { embeddingPresignRouter } from './embedding-router/_router';
 import { enterpriseRouter } from './enterprise-router/router';
 import { fieldRouter } from './field-router/router';
@@ -20,6 +21,7 @@ export const appRouter = router({
   auth: authRouter,
   profile: profileRouter,
   document: documentRouter,
+  employee: employeeRouter,
   field: fieldRouter,
   folder: folderRouter,
   recipient: recipientRouter,

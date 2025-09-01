@@ -68,7 +68,6 @@ export const PROTECTED_TEAM_URLS = [
   'copyright',
   'crime',
   'criminal',
-  'dashboard',
   'docs',
   'documenso',
   'documentation',

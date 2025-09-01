@@ -360,6 +360,7 @@ export const DocumentEditForm = ({
               fields={fields}
               onSubmit={onAddSignersFormSubmit}
               isDocumentPdfLoaded={isDocumentPdfLoaded}
+              teamId={team.id}
             />
 
             <AddFieldsFormPartial

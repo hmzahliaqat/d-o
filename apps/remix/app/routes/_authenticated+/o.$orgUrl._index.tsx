@@ -115,7 +115,7 @@ export default function OrganisationSettingsTeamsPage() {
             <Trans>{organisation.name} Teams</Trans>
           </h1>
           <p className="text-muted-foreground mt-1 text-sm">
-            <Trans>Select a team to view its dashboard</Trans>
+            <Trans>Select a team to view its documents</Trans>
           </p>
         </div>
 

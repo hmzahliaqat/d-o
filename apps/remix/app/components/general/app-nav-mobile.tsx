@@ -62,6 +62,10 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
 
     return [
       {
+        href: `/t/${teamUrl}/dashboard`,
+        text: t`Dashboard`,
+      },
+      {
         href: `/t/${teamUrl}/documents`,
         text: t`Documents`,
       },

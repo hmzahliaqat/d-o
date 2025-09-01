@@ -89,6 +89,7 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
             </Button>
           </Link>
 
+          {/* Temporarily commented out Public Profile
           <Link to="/settings/public-profile">
             <Button
               variant="ghost"
@@ -101,7 +102,9 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
               <Trans>Public Profile</Trans>
             </Button>
           </Link>
+          */}
 
+          {/* Temporarily commented out API Tokens
           <Link to="/settings/tokens">
             <Button
               variant="ghost"
@@ -114,7 +117,9 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
               <Trans>API Tokens</Trans>
             </Button>
           </Link>
+          */}
 
+          {/* Temporarily commented out Webhooks
           <Link to="/settings/webhooks">
             <Button
               variant="ghost"
@@ -127,6 +132,7 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
               <Trans>Webhooks</Trans>
             </Button>
           </Link>
+          */}
 
           {IS_BILLING_ENABLED() && (
             <Link to="/settings/billing">
@@ -145,6 +151,7 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
         </>
       )}
 
+      {/* Temporarily commented out Organisations
       <Link to="/settings/organisations">
         <Button
           variant="ghost"
@@ -157,6 +164,7 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
           <Trans>Organisations</Trans>
         </Button>
       </Link>
+      */}
 
       <Link to="/settings/security">
         <Button

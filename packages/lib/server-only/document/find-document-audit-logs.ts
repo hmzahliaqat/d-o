@@ -10,8 +10,8 @@ import { getDocumentWhereInput } from './get-document-by-id';
 
 export interface FindDocumentAuditLogsOptions {
   userId: number;
-  teamId: number;
-  documentId: number;
+  teamId?: number;
+  documentId?: number;
   page?: number;
   perPage?: number;
   orderBy?: {
@@ -35,23 +35,35 @@ export const findDocumentAuditLogs = async ({
   const orderByColumn = orderBy?.column ?? 'createdAt';
   const orderByDirection = orderBy?.direction ?? 'desc';
 
-  const { documentWhereInput } = await getDocumentWhereInput({
-    documentId,
-    userId,
-    teamId,
-  });
+  // Initialize the where clause
+  const whereClause: Prisma.DocumentAuditLogWhereInput = {};
 
-  const document = await prisma.document.findFirst({
-    where: documentWhereInput,
-  });
+  // If documentId is provided, filter by specific document
+  if (documentId) {
+    const { documentWhereInput } = await getDocumentWhereInput({
+      documentId,
+      userId,
+      teamId,
+    });
 
-  if (!document) {
-    throw new AppError(AppErrorCode.NOT_FOUND);
+    const document = await prisma.document.findFirst({
+      where: documentWhereInput,
+    });
+
+    if (!document) {
+      throw new AppError(AppErrorCode.NOT_FOUND);
+    }
+
+    whereClause.documentId = documentId;
   }
-
-  const whereClause: Prisma.DocumentAuditLogWhereInput = {
-    documentId,
-  };
+  // If only teamId is provided, filter by all documents in the team
+  else if (teamId) {
+    whereClause.document = {
+      teamId,
+    };
+  } else {
+    throw new AppError(AppErrorCode.BAD_REQUEST, 'Either documentId or teamId must be provided');
+  }
 
   // Filter events down to what we consider recent activity.
   if (filterForRecentActivity) {

@@ -22,6 +22,7 @@ import { canRecipientBeModified as utilCanRecipientBeModified } from '@documenso
 import { AnimateGenericFadeInOut } from '@documenso/ui/components/animate/animate-generic-fade-in-out';
 import { RecipientActionAuthSelect } from '@documenso/ui/components/recipient/recipient-action-auth-select';
 import { RecipientRoleSelect } from '@documenso/ui/components/recipient/recipient-role-select';
+import { EmployeeSelector } from '@documenso/ui/components/employee/employee-selector';
 import { cn } from '@documenso/ui/lib/utils';
 
 import {
@@ -56,6 +57,7 @@ export type AddSignersFormProps = {
   allowDictateNextSigner?: boolean;
   onSubmit: (_data: TAddSignersFormSchema) => void;
   isDocumentPdfLoaded: boolean;
+  teamId?: number;
 };
 
 export const AddSignersFormPartial = ({
@@ -66,6 +68,7 @@ export const AddSignersFormPartial = ({
   allowDictateNextSigner,
   onSubmit,
   isDocumentPdfLoaded,
+  teamId,
 }: AddSignersFormProps) => {
   const { _ } = useLingui();
   const { toast } = useToast();
@@ -557,6 +560,27 @@ export const AddSignersFormPartial = ({
                                     </FormItem>
                                   )}
                                 />
+                              )}
+
+                              {teamId && (
+                                <div className={cn('col-span-10', {
+                                  'col-span-12': isSigningOrderSequential,
+                                  'mb-4': true,
+                                })}>
+                                  <FormLabel>
+                                    <Trans>Select from Employees</Trans>
+                                  </FormLabel>
+                                  <EmployeeSelector
+                                    teamId={teamId}
+                                    className="w-full"
+                                    onSelect={(employee) => {
+                                      if (employee && canRecipientBeModified(signer.nativeId)) {
+                                        setValue(`signers.${index}.name`, employee.employee_name);
+                                        setValue(`signers.${index}.email`, employee.employee_email);
+                                      }
+                                    }}
+                                  />
+                                </div>
                               )}
 
                               <FormField

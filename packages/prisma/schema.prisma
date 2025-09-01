@@ -803,12 +803,14 @@ model Team {
 
   profile TeamProfile?
 
-  documents  Document[]
-  templates  Template[]
-  folders    Folder[]
-  apiTokens  ApiToken[]
-  webhooks   Webhook[]
-  teamGroups TeamGroup[]
+  documents        Document[]
+  templates        Template[]
+  folders          Folder[]
+  apiTokens        ApiToken[]
+  webhooks         Webhook[]
+  teamGroups       TeamGroup[]
+  employees        Employee[]
+  employeeAuditLogs EmployeeAuditLog[]
 
   organisationId String
   organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
@@ -1025,4 +1027,43 @@ model OrganisationEmail {
 
   organisationGlobalSettings OrganisationGlobalSettings[]
   teamGlobalSettings         TeamGlobalSettings[]
+}
+
+model Employee {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee_id    String  @unique
+  employee_name  String
+  employee_email String  @unique
+
+  teamId Int
+  team   Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  auditLogs EmployeeAuditLog[]
+
+  @@index([teamId])
+}
+
+model EmployeeAuditLog {
+  id         String   @id @default(cuid())
+  teamId     Int
+  employeeId Int?
+  createdAt  DateTime @default(now())
+  type       String
+  data       Json
+
+  // Details of the person who performed the action which caused the audit log.
+  name      String?
+  email     String?
+  userId    Int?
+  userAgent String?
+  ipAddress String?
+
+  team     Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  employee Employee? @relation(fields: [employeeId], references: [id], onDelete: SetNull)
+
+  @@index([teamId])
+  @@index([employeeId])
 }

@@ -30,19 +30,19 @@ type SubscriptionLite = Pick<
 
 type DocumentLite = Pick<Document, 'id'>;
 
-type AdminDashboardUsersTableProps = {
+type AdminUsersTableProps = {
   users: UserData[];
   totalPages: number;
   perPage: number;
   page: number;
 };
 
-export const AdminDashboardUsersTable = ({
+export const AdminUsersTable = ({
   users,
   totalPages,
   perPage,
   page,
-}: AdminDashboardUsersTableProps) => {
+}: AdminUsersTableProps) => {
   const { _ } = useLingui();
 
   const [isPending, startTransition] = useTransition();

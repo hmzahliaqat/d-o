@@ -74,7 +74,6 @@ export const PROTECTED_ORGANISATION_URLS = [
   'copyright',
   'crime',
   'criminal',
-  'dashboard',
   'docs',
   'documentation',
   'document',

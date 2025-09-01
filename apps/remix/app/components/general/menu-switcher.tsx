@@ -66,6 +66,7 @@ export const MenuSwitcher = () => {
         align="end"
         forceMount
       >
+        {/* Temporarily commented out Create Organisation button
         <DropdownMenuItem className="text-muted-foreground px-4 py-2" asChild>
           <Link
             to="/settings/organisations?action=add-organisation"
@@ -75,6 +76,7 @@ export const MenuSwitcher = () => {
             <Plus className="ml-2 h-4 w-4" />
           </Link>
         </DropdownMenuItem>
+        */}
         <DropdownMenuSeparator />
 
         {isUserAdmin && (

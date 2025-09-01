@@ -769,8 +769,12 @@ msgstr "Acknowledgment"
 msgid "Action"
 msgstr "Action"
 
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
 #: apps/remix/app/components/tables/templates-table.tsx
 #: apps/remix/app/components/tables/team-members-table.tsx
 #: apps/remix/app/components/tables/team-members-table.tsx
@@ -872,6 +876,13 @@ msgstr "Add Email"
 #: apps/remix/app/components/dialogs/organisation-email-domain-create-dialog.tsx
 msgid "Add Email Domain"
 msgstr "Add Email Domain"
+
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+msgid "Add Employee"
+msgstr "Add Employee"
 
 #: apps/remix/app/components/general/template/template-edit-form.tsx
 #: apps/remix/app/components/general/document/document-edit-form.tsx
@@ -1159,9 +1170,17 @@ msgstr "An error occurred while auto-signing the document, some fields may not b
 msgid "An error occurred while creating document from template."
 msgstr "An error occurred while creating document from template."
 
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+msgid "An error occurred while creating the employee."
+msgstr "An error occurred while creating the employee."
+
 #: apps/remix/app/components/dialogs/webhook-create-dialog.tsx
 msgid "An error occurred while creating the webhook. Please try again."
 msgstr "An error occurred while creating the webhook. Please try again."
+
+#: apps/remix/app/components/dialogs/employee-delete-dialog.tsx
+msgid "An error occurred while deleting the employee."
+msgstr "An error occurred while deleting the employee."
 
 #: apps/remix/app/components/dialogs/admin-user-delete-dialog.tsx
 msgid "An error occurred while deleting the user."
@@ -1277,6 +1296,10 @@ msgstr "An error occurred while trying to create a checkout session."
 msgid "An error occurred while updating the document settings."
 msgstr "An error occurred while updating the document settings."
 
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+msgid "An error occurred while updating the employee."
+msgstr "An error occurred while updating the employee."
+
 #: apps/remix/app/components/general/document-signing/document-signing-checkbox-field.tsx
 msgid "An error occurred while updating the signature."
 msgstr "An error occurred while updating the signature."
@@ -1368,8 +1391,6 @@ msgstr "Any Status"
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.tokens.tsx
-#: apps/remix/app/components/general/settings-nav-mobile.tsx
-#: apps/remix/app/components/general/settings-nav-desktop.tsx
 msgid "API Tokens"
 msgstr "API Tokens"
 
@@ -1465,6 +1486,7 @@ msgstr "Are you sure you wish to delete this team?"
 #: apps/remix/app/components/dialogs/organisation-group-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/organisation-email-domain-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/organisation-email-delete-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/document-delete-dialog.tsx
 msgid "Are you sure?"
 msgstr "Are you sure?"
@@ -1767,6 +1789,9 @@ msgstr "Can prepare"
 #: apps/remix/app/components/dialogs/folder-move-dialog.tsx
 #: apps/remix/app/components/dialogs/folder-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/folder-create-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-delete-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
 #: apps/remix/app/components/dialogs/document-resend-dialog.tsx
 #: apps/remix/app/components/dialogs/document-move-to-folder-dialog.tsx
 #: apps/remix/app/components/dialogs/document-duplicate-dialog.tsx
@@ -1995,6 +2020,8 @@ msgstr "Completed Document"
 msgid "Completed documents"
 msgstr "Completed documents"
 
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/dashboard.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/dashboard.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/stats.tsx
 msgid "Completed Documents"
 msgstr "Completed Documents"
@@ -2234,6 +2261,7 @@ msgstr "Copy token"
 #: apps/remix/app/components/dialogs/organisation-group-create-dialog.tsx
 #: apps/remix/app/components/dialogs/organisation-create-dialog.tsx
 #: apps/remix/app/components/dialogs/folder-create-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
 #: apps/remix/app/components/dialogs/admin-organisation-create-dialog.tsx
 msgid "Create"
 msgstr "Create"
@@ -2355,7 +2383,6 @@ msgstr "Create organisation"
 
 #: apps/remix/app/routes/_authenticated+/admin+/users.$id.tsx
 #: apps/remix/app/components/general/org-menu-switcher.tsx
-#: apps/remix/app/components/general/menu-switcher.tsx
 msgid "Create Organisation"
 msgstr "Create Organisation"
 
@@ -2496,6 +2523,8 @@ msgid "Dark Mode"
 msgstr "Dark Mode"
 
 #: apps/remix/app/routes/_authenticated+/dashboard.tsx
+#: apps/remix/app/components/general/app-nav-mobile.tsx
+#: apps/remix/app/components/general/app-nav-desktop.tsx
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -2554,10 +2583,12 @@ msgstr "Default Time Zone"
 msgid "delete"
 msgstr "delete"
 
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups.$id.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.tokens.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
 #: apps/remix/app/components/tables/templates-table-action-dropdown.tsx
 #: apps/remix/app/components/tables/settings-security-passkey-table-actions.tsx
 #: apps/remix/app/components/tables/settings-security-passkey-table-actions.tsx
@@ -2581,6 +2612,7 @@ msgstr "delete"
 #: apps/remix/app/components/dialogs/organisation-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/organisation-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/folder-delete-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/document-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/claim-delete-dialog.tsx
 msgid "Delete"
@@ -2638,6 +2670,11 @@ msgstr "Delete email domain"
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 msgid "Delete Email Domain"
 msgstr "Delete Email Domain"
+
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
+msgid "Delete employee"
+msgstr "Delete employee"
 
 #: apps/remix/app/components/dialogs/folder-delete-dialog.tsx
 msgid "Delete Folder"
@@ -3231,6 +3268,10 @@ msgstr "Draft"
 msgid "Draft documents"
 msgstr "Draft documents"
 
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/dashboard.tsx
+msgid "Draft Documents"
+msgstr "Draft Documents"
+
 #: apps/remix/app/routes/_authenticated+/admin+/stats.tsx
 msgid "Drafted Documents"
 msgstr "Drafted Documents"
@@ -3280,7 +3321,9 @@ msgstr "Duplicate"
 msgid "Duplicate on all pages"
 msgstr "Duplicate on all pages"
 
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
 #: apps/remix/app/components/tables/templates-table-action-dropdown.tsx
 #: apps/remix/app/components/tables/settings-security-passkey-table-actions.tsx
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
@@ -3290,6 +3333,11 @@ msgstr "Duplicate on all pages"
 #: apps/remix/app/components/general/document/document-page-view-button.tsx
 msgid "Edit"
 msgstr "Edit"
+
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
+msgid "Edit employee"
+msgstr "Edit employee"
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/templates.$id._index.tsx
 msgid "Edit Template"
@@ -3309,9 +3357,11 @@ msgstr "Electronic Signature Disclosure"
 
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/certificate.tsx
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/certificate.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/users.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 #: apps/remix/app/components/tables/admin-document-recipient-item-table.tsx
@@ -3443,6 +3493,35 @@ msgstr "Emails"
 msgid "Embedding, 5 members included and more"
 msgstr "Embedding, 5 members included and more"
 
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+msgid "Employee Email"
+msgstr "Employee Email"
+
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+msgid "Employee has been created."
+msgstr "Employee has been created."
+
+#: apps/remix/app/components/dialogs/employee-delete-dialog.tsx
+msgid "Employee has been deleted."
+msgstr "Employee has been deleted."
+
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+msgid "Employee has been updated."
+msgstr "Employee has been updated."
+
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+msgid "Employee ID"
+msgstr "Employee ID"
+
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+msgid "Employee Name"
+msgstr "Employee Name"
+
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
 #: apps/remix/app/components/general/app-nav-mobile.tsx
 #: apps/remix/app/components/general/app-nav-desktop.tsx
 msgid "Employees"
@@ -3523,6 +3602,25 @@ msgstr "Enter a name for your new folder. Folders help you organise your items."
 #: apps/remix/app/components/forms/subscription-claim-form.tsx
 msgid "Enter claim name"
 msgstr "Enter claim name"
+
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+msgid "Enter employee email"
+msgstr "Enter employee email"
+
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+msgid "Enter employee ID"
+msgstr "Enter employee ID"
+
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+msgid "Enter employee name"
+msgstr "Enter employee name"
+
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
+msgid "Enter the details of the new employee."
+msgstr "Enter the details of the new employee."
 
 #: apps/remix/app/components/dialogs/organisation-email-domain-create-dialog.tsx
 msgid "Enter the domain you want to use for sending emails (without http:// or www)"
@@ -3608,6 +3706,9 @@ msgstr "Enterprise"
 #: apps/remix/app/components/dialogs/template-move-to-folder-dialog.tsx
 #: apps/remix/app/components/dialogs/template-duplicate-dialog.tsx
 #: apps/remix/app/components/dialogs/session-logout-all-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-delete-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
 #: apps/remix/app/components/dialogs/document-move-to-folder-dialog.tsx
 #: apps/remix/app/components/dialogs/document-move-to-folder-dialog.tsx
 #: apps/remix/app/components/dialogs/document-move-to-folder-dialog.tsx
@@ -4127,6 +4228,8 @@ msgstr "I am the owner of this document"
 msgid "I'm sure! Delete it"
 msgstr "I'm sure! Delete it"
 
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
 #: apps/remix/app/components/tables/admin-claims-table.tsx
 msgid "ID"
 msgstr "ID"
@@ -4732,7 +4835,9 @@ msgstr "My Folder"
 msgid "N/A"
 msgstr "N/A"
 
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/users.$id.tsx
 #: apps/remix/app/components/tables/settings-security-passkey-table.tsx
 #: apps/remix/app/components/tables/settings-security-passkey-table-actions.tsx
@@ -5132,8 +5237,6 @@ msgstr "Organisation URL"
 #: apps/remix/app/routes/_authenticated+/dashboard.tsx
 #: apps/remix/app/routes/_authenticated+/settings+/organisations.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
-#: apps/remix/app/components/general/settings-nav-mobile.tsx
-#: apps/remix/app/components/general/settings-nav-desktop.tsx
 #: apps/remix/app/components/general/org-menu-switcher.tsx
 msgid "Organisations"
 msgstr "Organisations"
@@ -5288,6 +5391,7 @@ msgstr "Pending Document"
 msgid "Pending documents"
 msgstr "Pending documents"
 
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/dashboard.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/stats.tsx
 msgid "Pending Documents"
 msgstr "Pending Documents"
@@ -5559,8 +5663,6 @@ msgstr "Public"
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
-#: apps/remix/app/components/general/settings-nav-mobile.tsx
-#: apps/remix/app/components/general/settings-nav-desktop.tsx
 msgid "Public Profile"
 msgstr "Public Profile"
 
@@ -6073,6 +6175,10 @@ msgstr "Select a time zone"
 msgid "Select access methods"
 msgstr "Select access methods"
 
+#: packages/ui/components/employee/employee-selector.tsx
+msgid "Select an employee..."
+msgstr "Select an employee..."
+
 #: packages/ui/primitives/combobox.tsx
 msgid "Select an option"
 msgstr "Select an option"
@@ -6097,6 +6203,10 @@ msgstr "Select default option"
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/checkbox-field.tsx
 msgid "Select direction"
 msgstr "Select direction"
+
+#: packages/ui/primitives/document-flow/add-signers.tsx
+msgid "Select from Employees"
+msgstr "Select from Employees"
 
 #: apps/remix/app/components/dialogs/team-group-create-dialog.tsx
 msgid "Select groups"
@@ -6766,6 +6876,9 @@ msgstr "Subscription invalid"
 #: apps/remix/app/components/dialogs/organisation-email-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/organisation-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/organisation-create-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-delete-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-create-dialog.tsx
 #: apps/remix/app/components/dialogs/admin-organisation-create-dialog.tsx
 msgid "Success"
 msgstr "Success"
@@ -7758,9 +7871,14 @@ msgstr "Token has expired. Please try again."
 msgid "Token name"
 msgstr "Token name"
 
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/dashboard.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/stats.tsx
 msgid "Total Documents"
 msgstr "Total Documents"
+
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/dashboard.tsx
+msgid "Total Employees"
+msgstr "Total Employees"
 
 #: apps/remix/app/routes/_authenticated+/admin+/stats.tsx
 msgid "Total Recipients"
@@ -7968,6 +8086,7 @@ msgstr "Untitled Group"
 #: apps/remix/app/components/dialogs/organisation-member-update-dialog.tsx
 #: apps/remix/app/components/dialogs/organisation-email-update-dialog.tsx
 #: apps/remix/app/components/dialogs/folder-update-dialog.tsx
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Update"
@@ -7993,6 +8112,10 @@ msgstr "Update current organisation"
 #: apps/remix/app/components/dialogs/organisation-email-update-dialog.tsx
 msgid "Update email"
 msgstr "Update email"
+
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+msgid "Update Employee"
+msgstr "Update Employee"
 
 #: apps/remix/app/components/general/legacy-field-warning-popover.tsx
 msgid "Update Fields"
@@ -8053,6 +8176,10 @@ msgstr "Update team group"
 #: apps/remix/app/components/dialogs/team-member-update-dialog.tsx
 msgid "Update team member"
 msgstr "Update team member"
+
+#: apps/remix/app/components/dialogs/employee-update-dialog.tsx
+msgid "Update the details of the employee."
+msgstr "Update the details of the employee."
 
 #: packages/lib/constants/template.ts
 msgid "Update the role and add fields as required for the direct recipient. The individual who uses the direct link will sign the document as the direct recipient."
@@ -8767,8 +8894,6 @@ msgstr "Webhook URL"
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
-#: apps/remix/app/components/general/settings-nav-mobile.tsx
-#: apps/remix/app/components/general/settings-nav-desktop.tsx
 msgid "Webhooks"
 msgstr "Webhooks"
 
@@ -8860,6 +8985,11 @@ msgstr "You are about to delete <0>\"{documentTitle}\"</0>"
 #: apps/remix/app/components/dialogs/organisation-delete-dialog.tsx
 msgid "You are about to delete <0>{0}</0>. All data related to this organisation such as teams, documents, and all other resources will be deleted. This action is irreversible."
 msgstr "You are about to delete <0>{0}</0>. All data related to this organisation such as teams, documents, and all other resources will be deleted. This action is irreversible."
+
+#. placeholder {0}: team.name
+#: apps/remix/app/components/dialogs/employee-delete-dialog.tsx
+msgid "You are about to delete the following employee from <0>{0}</0>."
+msgstr "You are about to delete the following employee from <0>{0}</0>."
 
 #: apps/remix/app/components/dialogs/team-email-delete-dialog.tsx
 msgid "You are about to delete the following team email from <0>{teamName}</0>."

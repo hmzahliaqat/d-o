@@ -54,6 +54,10 @@ export const AppNavDesktop = ({
 
     return [
       {
+        href: `/t/${teamUrl}/dashboard`,
+        label: msg`Dashboard`,
+      },
+      {
         href: `/t/${teamUrl}/documents`,
         label: msg`Documents`,
       },

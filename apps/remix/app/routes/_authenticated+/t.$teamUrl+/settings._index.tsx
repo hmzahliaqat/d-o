@@ -167,7 +167,7 @@ export default function TeamsSettingsPage({ loaderData }: Route.ComponentProps) 
               </AlertDescription>
             </div>
 
-            <TeamDeleteDialog teamId={team.id} teamName={team.name} redirectTo="/dashboard" />
+            <TeamDeleteDialog teamId={team.id} teamName={team.name} redirectTo="/" />
           </Alert>
         )}
       </section>
