@@ -5,7 +5,7 @@ import { Trans } from '@lingui/react/macro';
 import { ReadStatus } from '@prisma/client';
 import { Link } from 'react-router';
 
-import LogoImage from '@documenso/assets/logo.png';
+// Using logo22.png directly from public directory
 import { authClient } from '@documenso/auth/client';
 import { useSession } from '@documenso/lib/client-only/providers/session';
 import { isPersonalLayout } from '@documenso/lib/utils/organisations';
@@ -93,11 +93,11 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
       <SheetContent className="flex w-full max-w-[350px] flex-col">
         <Link to="/" onClick={handleMenuItemClick}>
           <img
-            src={LogoImage}
+            src="/logo22.png"
             alt="Documenso Logo"
             className="dark:invert"
-            width={170}
-            height={25}
+            width={190}
+            height={28}
           />
         </Link>
 
