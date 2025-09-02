@@ -134,20 +134,18 @@ export const SettingsDesktopNav = ({ className, ...props }: SettingsDesktopNavPr
           </Link>
           */}
 
-          {IS_BILLING_ENABLED() && (
-            <Link to="/settings/billing">
-              <Button
-                variant="ghost"
-                className={cn(
-                  'w-full justify-start',
-                  pathname?.startsWith('/settings/billing') && 'bg-secondary',
-                )}
-              >
-                <CreditCardIcon className="mr-2 h-5 w-5" />
-                <Trans>Billing</Trans>
-              </Button>
-            </Link>
-          )}
+          <Link to="/settings/billing">
+            <Button
+              variant="ghost"
+              className={cn(
+                'w-full justify-start',
+                pathname?.startsWith('/settings/billing') && 'bg-secondary',
+              )}
+            >
+              <CreditCardIcon className="mr-2 h-5 w-5" />
+              <Trans>Billing</Trans>
+            </Button>
+          </Link>
         </>
       )}
 

@@ -30,6 +30,10 @@ export const formatDocumentsPath = (teamUrl: string) => {
   return `/t/${teamUrl}/documents`;
 };
 
+export const formatDashboardPath = (teamUrl: string) => {
+  return `/t/${teamUrl}/dashboard`;
+};
+
 export const formatTemplatesPath = (teamUrl: string) => {
   return `/t/${teamUrl}/templates`;
 };

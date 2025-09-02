@@ -113,7 +113,7 @@ export class AuthClient {
 
       await this.handleError(response);
 
-      handleSignInRedirect(data.redirectPath);
+      await handleSignInRedirect(data.redirectPath);
     },
 
     updatePassword: async (data: TUpdatePasswordSchema) => {
@@ -181,7 +181,7 @@ export class AuthClient {
       const response = await this.client['passkey'].authorize.$post({ json: data });
       await this.handleError(response);
 
-      handleSignInRedirect(data.redirectPath);
+      await handleSignInRedirect(data.redirectPath);
     },
   };
 

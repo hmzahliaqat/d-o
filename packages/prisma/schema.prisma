@@ -34,6 +34,7 @@ enum IdentityProvider {
 enum Role {
   ADMIN
   USER
+  SUPER_ADMIN
 }
 
 model User {

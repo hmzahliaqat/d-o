@@ -3,12 +3,13 @@ import { useMemo } from 'react';
 import { useLingui } from '@lingui/react/macro';
 import { Trans } from '@lingui/react/macro';
 import { ReadStatus } from '@prisma/client';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 
 // Using logo22.png directly from public directory
 import { authClient } from '@documenso/auth/client';
 import { useSession } from '@documenso/lib/client-only/providers/session';
 import { isPersonalLayout } from '@documenso/lib/utils/organisations';
+import { isAdmin } from '@documenso/lib/utils/is-admin';
 import { trpc } from '@documenso/trpc/react';
 import { Sheet, SheetContent } from '@documenso/ui/primitives/sheet';
 import { ThemeSwitcher } from '@documenso/ui/primitives/theme-switcher';
@@ -23,7 +24,8 @@ export type AppNavMobileProps = {
 export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps) => {
   const { t } = useLingui();
 
-  const { organisations } = useSession();
+  const { organisations, user } = useSession();
+  const isAdminUser = user ? isAdmin(user) : false;
 
   const currentTeam = useOptionalCurrentTeam();
 
@@ -40,7 +42,51 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
     onMenuOpenChange?.(false);
   };
 
+  const { pathname } = useLocation();
+
   const menuNavigationLinks = useMemo(() => {
+    // Check if we're in the admin section based on the current path
+    const isInAdminSection = pathname?.startsWith('/super-admin');
+
+    // If user is an admin and currently in the admin section, show admin specific links
+    if (isAdminUser && isInAdminSection) {
+      return [
+        {
+          href: '/super-admin/dashboard',
+          text: t`Dashboard`,
+        },
+        {
+          href: '/super-admin/users',
+          text: t`User Management`,
+        },
+        {
+          href: '/super-admin/organisations',
+          text: t`Organisations`,
+        },
+        {
+          href: '/super-admin/documents',
+          text: t`Documents`,
+        },
+        {
+          href: '/super-admin/security',
+          text: t`Security`,
+        },
+        {
+          href: '/super-admin/settings',
+          text: t`System Settings`,
+        },
+        {
+          href: '/inbox',
+          text: t`Inbox`,
+        },
+        {
+          href: '/settings/profile',
+          text: t`Settings`,
+        },
+      ];
+    }
+
+    // Regular user navigation
     let teamUrl = currentTeam?.url || null;
 
     if (!teamUrl && isPersonalLayout(organisations)) {
@@ -60,7 +106,8 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
       ];
     }
 
-    return [
+    // Define all regular navigation links
+    const regularLinks = [
       {
         href: `/t/${teamUrl}/dashboard`,
         text: t`Dashboard`,
@@ -86,7 +133,20 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
         text: t`Settings`,
       },
     ];
-  }, [currentTeam, organisations]);
+
+    // If user is an admin, filter out dashboard, documents, templates, employees, and inbox links
+    if (isAdminUser) {
+      return regularLinks.filter(link =>
+        !link.href.includes('/dashboard') &&
+        !link.href.includes('/documents') &&
+        !link.href.includes('/templates') &&
+        !link.href.includes('/employees') &&
+        !link.href.includes('/inbox')
+      );
+    }
+
+    return regularLinks;
+  }, [currentTeam, organisations, isAdminUser, t]);
 
   return (
     <Sheet open={isMenuOpen} onOpenChange={onMenuOpenChange}>

@@ -11,6 +11,7 @@ import { Link, useLocation } from 'react-router';
 
 import { useSession } from '@documenso/lib/client-only/providers/session';
 import { isPersonalLayout } from '@documenso/lib/utils/organisations';
+import { isAdmin } from '@documenso/lib/utils/is-admin';
 import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
 
@@ -26,7 +27,8 @@ export const AppNavDesktop = ({
   ...props
 }: AppNavDesktopProps) => {
   const { _ } = useLingui();
-  const { organisations } = useSession();
+  const { organisations, user } = useSession();
+  const isAdminUser = user ? isAdmin(user) : false;
 
   const { pathname } = useLocation();
 
@@ -42,6 +44,40 @@ export const AppNavDesktop = ({
   }, []);
 
   const menuNavigationLinks = useMemo(() => {
+    // Check if we're in the admin section based on the current path
+    const isInAdminSection = pathname?.startsWith('/super-admin');
+
+    // If user is an admin and currently in the admin section, show admin specific links
+    if (isAdminUser && isInAdminSection) {
+      return [
+        {
+          href: '/super-admin/dashboard',
+          label: msg`Dashboard`,
+        },
+        {
+          href: '/super-admin/users',
+          label: msg`User Management`,
+        },
+        {
+          href: '/super-admin/organisations',
+          label: msg`Organisations`,
+        },
+        {
+          href: '/super-admin/documents',
+          label: msg`Documents`,
+        },
+        {
+          href: '/super-admin/security',
+          label: msg`Security`,
+        },
+        {
+          href: '/super-admin/settings',
+          label: msg`System Settings`,
+        },
+      ];
+    }
+
+    // Regular user navigation
     let teamUrl = currentTeam?.url || null;
 
     if (!teamUrl && isPersonalLayout(organisations)) {
@@ -52,7 +88,8 @@ export const AppNavDesktop = ({
       return [];
     }
 
-    return [
+    // Define all regular navigation links
+    const regularLinks = [
       {
         href: `/t/${teamUrl}/dashboard`,
         label: msg`Dashboard`,
@@ -70,7 +107,19 @@ export const AppNavDesktop = ({
         label: msg`Employees`,
       },
     ];
-  }, [currentTeam, organisations]);
+
+    // If user is an admin, filter out dashboard, documents, templates, and employees links
+    if (isAdminUser) {
+      return regularLinks.filter(link =>
+        !link.href.includes('/dashboard') &&
+        !link.href.includes('/documents') &&
+        !link.href.includes('/templates') &&
+        !link.href.includes('/employees')
+      );
+    }
+
+    return regularLinks;
+  }, [currentTeam, organisations, isAdminUser]);
 
   return (
     <div
@@ -108,22 +157,25 @@ export const AppNavDesktop = ({
         </AnimatePresence>
       </div>
 
-      <Button
-        variant="outline"
-        className="text-muted-foreground flex w-full max-w-96 items-center justify-between rounded-lg"
-        onClick={() => setIsCommandMenuOpen(true)}
-      >
-        <div className="flex items-center">
-          <Search className="mr-2 h-5 w-5" />
-          <Trans>Search</Trans>
-        </div>
-
-        <div>
-          <div className="text-muted-foreground bg-muted flex items-center rounded-md px-1.5 py-0.5 text-xs tracking-wider">
-            {modifierKey}+K
+      {/* Hide search button for admin users */}
+      {!isAdminUser && (
+        <Button
+          variant="outline"
+          className="text-muted-foreground flex w-full max-w-96 items-center justify-between rounded-lg"
+          onClick={() => setIsCommandMenuOpen(true)}
+        >
+          <div className="flex items-center">
+            <Search className="mr-2 h-5 w-5" />
+            <Trans>Search</Trans>
           </div>
-        </div>
-      </Button>
+
+          <div>
+            <div className="text-muted-foreground bg-muted flex items-center rounded-md px-1.5 py-0.5 text-xs tracking-wider">
+              {modifierKey}+K
+            </div>
+          </div>
+        </Button>
+      )}
     </div>
   );
 };

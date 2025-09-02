@@ -7,6 +7,7 @@ import { Link, useParams } from 'react-router';
 import { useSession } from '@documenso/lib/client-only/providers/session';
 import { isPersonalLayout } from '@documenso/lib/utils/organisations';
 import { getRootHref } from '@documenso/lib/utils/params';
+import { isAdmin } from '@documenso/lib/utils/is-admin';
 import { trpc } from '@documenso/trpc/react';
 import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
@@ -24,7 +25,8 @@ export type HeaderProps = HTMLAttributes<HTMLDivElement>;
 export const Header = ({ className, ...props }: HeaderProps) => {
   const params = useParams();
 
-  const { organisations } = useSession();
+  const { organisations, user } = useSession();
+  const isAdminUser = user ? isAdmin(user) : false;
 
   const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
@@ -68,17 +70,20 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 
         <AppNavDesktop setIsCommandMenuOpen={setIsCommandMenuOpen} />
 
-        <Button asChild variant="outline" className="relative hidden h-10 w-10 rounded-lg md:flex">
-          <Link to="/inbox" className="relative block h-10 w-10">
-            <InboxIcon className="text-muted-foreground hover:text-foreground h-5 w-5 flex-shrink-0 transition-colors" />
+        {/* Hide inbox button for admin users */}
+        {!isAdminUser && (
+          <Button asChild variant="outline" className="relative hidden h-10 w-10 rounded-lg md:flex">
+            <Link to="/inbox" className="relative block h-10 w-10">
+              <InboxIcon className="text-muted-foreground hover:text-foreground h-5 w-5 flex-shrink-0 transition-colors" />
 
-            {unreadCountData && unreadCountData.count > 0 && (
-              <span className="bg-primary text-primary-foreground absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-semibold">
-                {unreadCountData.count > 99 ? '99+' : unreadCountData.count}
-              </span>
-            )}
-          </Link>
-        </Button>
+              {unreadCountData && unreadCountData.count > 0 && (
+                <span className="bg-primary text-primary-foreground absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-semibold">
+                  {unreadCountData.count > 99 ? '99+' : unreadCountData.count}
+                </span>
+              )}
+            </Link>
+          </Button>
+        )}
 
         <div className="md:ml-4">
           {isPersonalLayout(organisations) ? <MenuSwitcher /> : <OrgMenuSwitcher />}

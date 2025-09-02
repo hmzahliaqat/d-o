@@ -282,11 +282,14 @@ export const OrgMenuSwitcher = () => {
                 </DropdownMenuItem>
               )}
 
-              <DropdownMenuItem className="text-muted-foreground px-4 py-2" asChild>
-                <Link to="/inbox">
-                  <Trans>Personal Inbox</Trans>
-                </Link>
-              </DropdownMenuItem>
+              {/* Hide personal inbox for admin users */}
+              {!isUserAdmin && (
+                <DropdownMenuItem className="text-muted-foreground px-4 py-2" asChild>
+                  <Link to="/inbox">
+                    <Trans>Personal Inbox</Trans>
+                  </Link>
+                </DropdownMenuItem>
+              )}
 
               <DropdownMenuItem className="text-muted-foreground px-4 py-2" asChild>
                 <Link to="/settings/profile">

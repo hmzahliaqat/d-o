@@ -6,14 +6,13 @@ import {
   CreditCardIcon,
   Globe2Icon,
   Lock,
-  MailIcon,
-  PaletteIcon,
   Settings2Icon,
   User,
   Users,
   WebhookIcon,
 } from 'lucide-react';
-import { Link, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router';
 
 import { useSession } from '@documenso/lib/client-only/providers/session';
 import { IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
@@ -21,9 +20,9 @@ import { isPersonalLayout } from '@documenso/lib/utils/organisations';
 import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
 
-export type SettingsMobileNavProps = HTMLAttributes<HTMLDivElement>;
+export type SettingsDesktopNavProps = HTMLAttributes<HTMLDivElement>;
 
-export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProps) => {
+export const SettingsDesktopNav = ({ className, ...props }: SettingsDesktopNavProps) => {
   const { pathname } = useLocation();
 
   const { organisations } = useSession();
@@ -31,10 +30,7 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
   const isPersonalLayoutMode = isPersonalLayout(organisations);
 
   return (
-    <div
-      className={cn('flex flex-wrap items-center justify-start gap-x-2 gap-y-4', className)}
-      {...props}
-    >
+    <div className={cn('flex flex-col gap-y-2', className)} {...props}>
       <Link to="/settings/profile">
         <Button
           variant="ghost"
@@ -51,6 +47,13 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
       {isPersonalLayoutMode && (
         <>
           <Link to="/settings/document">
+            <Button variant="ghost" className={cn('w-full justify-start')}>
+              <Settings2Icon className="mr-2 h-5 w-5" />
+              <Trans>Preferences</Trans>
+            </Button>
+          </Link>
+
+          <Link className="w-full pl-8" to="/settings/document">
             <Button
               variant="ghost"
               className={cn(
@@ -58,12 +61,11 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
                 pathname?.startsWith('/settings/document') && 'bg-secondary',
               )}
             >
-              <Settings2Icon className="mr-2 h-5 w-5" />
-              <Trans>Document Preferences</Trans>
+              <Trans>Document</Trans>
             </Button>
           </Link>
 
-          <Link to="/settings/branding">
+          <Link className="w-full pl-8" to="/settings/branding">
             <Button
               variant="ghost"
               className={cn(
@@ -71,12 +73,11 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
                 pathname?.startsWith('/settings/branding') && 'bg-secondary',
               )}
             >
-              <PaletteIcon className="mr-2 h-5 w-5" />
-              <Trans>Branding Preferences</Trans>
+              <Trans>Branding</Trans>
             </Button>
           </Link>
 
-          <Link to="/settings/email">
+          <Link className="w-full pl-8" to="/settings/email">
             <Button
               variant="ghost"
               className={cn(
@@ -84,8 +85,7 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
                 pathname?.startsWith('/settings/email') && 'bg-secondary',
               )}
             >
-              <MailIcon className="mr-2 h-5 w-5" />
-              <Trans>Email Preferences</Trans>
+              <Trans>Email</Trans>
             </Button>
           </Link>
 
@@ -134,18 +134,20 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
           </Link>
           */}
 
-          <Link to="/settings/billing">
-            <Button
-              variant="ghost"
-              className={cn(
-                'w-full justify-start',
-                pathname?.startsWith('/settings/billing') && 'bg-secondary',
-              )}
-            >
-              <CreditCardIcon className="mr-2 h-5 w-5" />
-              <Trans>Billing</Trans>
-            </Button>
-          </Link>
+          {IS_BILLING_ENABLED() && (
+            <Link to="/settings/billing">
+              <Button
+                variant="ghost"
+                className={cn(
+                  'w-full justify-start',
+                  pathname?.startsWith('/settings/billing') && 'bg-secondary',
+                )}
+              >
+                <CreditCardIcon className="mr-2 h-5 w-5" />
+                <Trans>Billing</Trans>
+              </Button>
+            </Link>
+          )}
         </>
       )}
 

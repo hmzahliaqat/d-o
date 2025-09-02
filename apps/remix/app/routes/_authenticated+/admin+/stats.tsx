@@ -5,7 +5,6 @@ import {
   File,
   FileCheck,
   FileClock,
-  FileCog,
   FileEdit,
   Mail,
   MailOpen,
@@ -30,7 +29,6 @@ import { AdminStatsSignerConversionChart } from '~/components/general/admin-stat
 import { AdminStatsUsersWithDocumentsChart } from '~/components/general/admin-stats-users-with-documents';
 import { CardMetric } from '~/components/general/metric-card';
 
-import { version } from '../../../../package.json';
 import type { Route } from './+types/stats';
 
 export async function loader() {
@@ -90,8 +88,6 @@ export default function AdminStatsPage({ loaderData }: Route.ComponentProps) {
           title={_(msg`Active Subscriptions`)}
           value={organisationsWithSubscriptionsCount}
         />
-
-        <CardMetric icon={FileCog} title={_(msg`App Version`)} value={`v${version}`} />
       </div>
 
       <div className="mt-16 gap-8">
