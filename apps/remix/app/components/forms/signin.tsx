@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { MessageDescriptor } from '@lingui/core';
@@ -7,7 +7,10 @@ import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
 import { browserSupportsWebAuthn, startAuthentication } from '@simplewebauthn/browser';
 import { KeyRoundIcon } from 'lucide-react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'react-hook-form';
+
+import { ClientOnly } from '~/components/client-only';
 import { FaIdCardClip } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router';
@@ -62,6 +65,7 @@ export const ZSignInFormSchema = z.object({
   password: ZCurrentPasswordSchema,
   totpCode: z.string().trim().optional(),
   backupCode: z.string().trim().optional(),
+  recaptchaToken: z.string().min(1, { message: msg`Please complete the reCAPTCHA verification`.id }),
 });
 
 export type TSignInFormSchema = z.infer<typeof ZSignInFormSchema>;
@@ -87,6 +91,7 @@ export const SignInForm = ({
   const { toast } = useToast();
 
   const navigate = useNavigate();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const [isTwoFactorAuthenticationDialogOpen, setIsTwoFactorAuthenticationDialogOpen] =
     useState(false);
@@ -122,6 +127,7 @@ export const SignInForm = ({
       password: '',
       totpCode: '',
       backupCode: '',
+      recaptchaToken: '',
     },
     resolver: zodResolver(ZSignInFormSchema),
   });
@@ -204,14 +210,21 @@ export const SignInForm = ({
     }
   };
 
-  const onFormSubmit = async ({ email, password, totpCode, backupCode }: TSignInFormSchema) => {
+  const onFormSubmit = async ({ email, password, totpCode, backupCode, recaptchaToken }: TSignInFormSchema) => {
     try {
+      // Reset reCAPTCHA after form submission
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+        form.setValue('recaptchaToken', '');
+      }
+
       await authClient.emailPassword.signIn({
         email,
         password,
         totpCode,
         backupCode,
         redirectPath,
+        recaptchaToken,
       });
     } catch (err) {
       console.log(err);
@@ -350,6 +363,27 @@ export const SignInForm = ({
                     <Trans>Forgot your password?</Trans>
                   </Link>
                 </p>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="recaptchaToken"
+            render={({ field: { onChange } }) => (
+              <FormItem>
+                <FormControl>
+                  <div className="flex justify-center my-4">
+                    <ClientOnly>
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={typeof window !== 'undefined' ? window.ENV?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LfEjZ8rAAAAAENDoqHf53o-JBp-nHiaFvaCSib2' : ''}
+                        onChange={(token) => onChange(token || '')}
+                      />
+                    </ClientOnly>
+                  </div>
+                </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />

@@ -3,6 +3,7 @@ import {
   BarChart3,
   Building2Icon,
   FileStack,
+  FileText,
   Settings,
   Trophy,
   Users,
@@ -121,6 +122,20 @@ export default function AdminLayout() {
             <Link to="/admin/leaderboard">
               <Trophy className="mr-2 h-5 w-5" />
               <Trans>Leaderboard</Trans>
+            </Link>
+          </Button>
+
+          <Button
+            variant="ghost"
+            className={cn(
+              'justify-start md:w-full',
+              pathname?.startsWith('/admin/privacy-policy') && 'bg-secondary',
+            )}
+            asChild
+          >
+            <Link to="/admin/privacy-policy">
+              <FileText className="mr-2 h-5 w-5" />
+              <Trans>Privacy Policy</Trans>
             </Link>
           </Button>
 

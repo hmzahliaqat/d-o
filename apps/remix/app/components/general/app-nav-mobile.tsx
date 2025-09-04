@@ -154,7 +154,7 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
         <Link to="/" onClick={handleMenuItemClick}>
           <img
             src="/logo22.png"
-            alt="Documenso Logo"
+            alt="Clickesignature"
             className="dark:invert"
             width={190}
             height={28}

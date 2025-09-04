@@ -75,13 +75,38 @@ export const onSubscriptionUpdated = async ({
   if (!updatedSubscriptionClaim) {
     console.error(`Subscription claim on ${updatedItem.price.id} not found`);
 
-    throw Response.json(
-      {
-        success: false,
-        message: `Subscription claim on ${updatedItem.price.id} not found`,
-      } satisfies StripeWebhookResponse,
-      { status: 500 },
-    );
+    // Fallback: proceed to update subscription data without claim changes.
+    const status = match(subscription.status)
+      .with('active', () => SubscriptionStatus.ACTIVE)
+      .with('trialing', () => SubscriptionStatus.ACTIVE)
+      .with('past_due', () => SubscriptionStatus.PAST_DUE)
+      .otherwise(() => SubscriptionStatus.INACTIVE);
+
+    const periodEnd =
+      subscription.status === 'trialing' && subscription.trial_end
+        ? new Date(subscription.trial_end * 1000)
+        : new Date(subscription.current_period_end * 1000);
+
+    await prisma.subscription.upsert({
+      where: { organisationId: organisation.id },
+      create: {
+        organisationId: organisation.id,
+        status,
+        planId: subscription.id,
+        priceId: subscription.items.data[0].price.id,
+        periodEnd,
+        cancelAtPeriodEnd: subscription.cancel_at_period_end,
+      },
+      update: {
+        status,
+        planId: subscription.id,
+        priceId: subscription.items.data[0].price.id,
+        periodEnd,
+        cancelAtPeriodEnd: subscription.cancel_at_period_end,
+      },
+    });
+
+    return;
   }
 
   const newClaimFound = previousSubscriptionClaimId !== updatedSubscriptionClaim.id;

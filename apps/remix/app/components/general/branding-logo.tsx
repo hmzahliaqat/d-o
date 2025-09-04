@@ -6,7 +6,7 @@ export const BrandingLogo = ({ className, ...props }: LogoProps) => {
   return (
     <img
       src="/logo22.png"
-      alt="Documenso Logo"
+      alt="Clickesignature"
       className={className}
       {...props}
     />

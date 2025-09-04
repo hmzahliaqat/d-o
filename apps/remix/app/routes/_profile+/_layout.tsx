@@ -57,7 +57,7 @@ export default function PublicProfileLayout() {
 
               <img
                 src="/logo22.png"
-                alt="Documenso Logo"
+                alt="Clickesignature"
                 width={54}
                 height={54}
                 className="h-11 w-auto sm:hidden dark:invert"

@@ -131,8 +131,8 @@ export const BillingPlans = ({ plans }: BillingPlansProps) => {
                 )}
 
                 <div className="flex-1" />
-
                 {isPersonalLayoutMode && price.claim === INTERNAL_CLAIM_ID.INDIVIDUAL ? (
+
                   <IndividualPersonalLayoutCheckoutButton priceId={price.id}>
                     <Trans>Subscribe</Trans>
                   </IndividualPersonalLayoutCheckoutButton>
@@ -259,31 +259,31 @@ const BillingDialog = ({
                 <div className="space-y-1.5 leading-none">
                   <Label htmlFor="update" className="flex items-center gap-2 font-medium">
                     <Building2Icon className="h-4 w-4" />
-                    <Trans>Update current organisation</Trans>
+                    <Trans>Proceed to stripe checkout</Trans>
                   </Label>
                   <p className="text-muted-foreground text-sm">
                     <Trans>
-                      Upgrade <strong>{organisation.name}</strong> to {planName}
+                      Checkout  for {planName}
                     </Trans>
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-3 space-y-0">
-                <RadioGroupItem value="create" id="create" />
-                <div className="space-y-1.5 leading-none">
-                  <Label htmlFor="create" className="flex items-center gap-2 font-medium">
-                    <PlusIcon className="h-4 w-4" />
-                    <Trans>Create separate organisation</Trans>
-                  </Label>
-                  <p className="text-muted-foreground text-sm">
-                    <Trans>
-                      Create a new organisation with {planName} plan. Keep your current organisation
-                      on it's current plan
-                    </Trans>
-                  </p>
-                </div>
-              </div>
+              {/*<div className="flex items-start space-x-3 space-y-0">*/}
+              {/*  <RadioGroupItem value="create" id="create" />*/}
+              {/*  <div className="space-y-1.5 leading-none">*/}
+              {/*    <Label htmlFor="create" className="flex items-center gap-2 font-medium">*/}
+              {/*      <PlusIcon className="h-4 w-4" />*/}
+              {/*      <Trans>Create separate organisation</Trans>*/}
+              {/*    </Label>*/}
+              {/*    /!*<p className="text-muted-foreground text-sm">*!/*/}
+              {/*    /!*  <Trans>*!/*/}
+              {/*    /!*    Create a new organisation with {planName} plan. Keep your current organisation*!/*/}
+              {/*    /!*    on it's current plan*!/*/}
+              {/*    /!*  </Trans>*!/*/}
+              {/*    /!*</p>*!/*/}
+              {/*  </div>*/}
+              {/*</div>*/}
             </RadioGroup>
           </div>
         ) : (

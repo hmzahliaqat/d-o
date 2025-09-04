@@ -1,11 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { MessageDescriptor } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'react-hook-form';
+
+import { ClientOnly } from '~/components/client-only';
 import { FaIdCardClip } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate, useSearchParams } from 'react-router';
@@ -39,6 +42,7 @@ export const ZSignUpFormSchema = z
     email: z.string().email().min(1),
     password: ZPasswordSchema,
     signature: z.string().min(1, { message: msg`We need your signature to sign documents`.id }),
+    recaptchaToken: z.string().min(1, { message: msg`Please complete the reCAPTCHA verification`.id }),
   })
   .refine(
     (data) => {
@@ -78,6 +82,7 @@ export const SignUpForm = ({
   const analytics = useAnalytics();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const utmSrc = searchParams.get('utm_source') ?? null;
 
@@ -87,6 +92,7 @@ export const SignUpForm = ({
       email: initialEmail ?? '',
       password: '',
       signature: '',
+      recaptchaToken: '',
     },
     mode: 'onBlur',
     resolver: zodResolver(ZSignUpFormSchema),
@@ -94,13 +100,20 @@ export const SignUpForm = ({
 
   const isSubmitting = form.formState.isSubmitting;
 
-  const onFormSubmit = async ({ name, email, password, signature }: TSignUpFormSchema) => {
+  const onFormSubmit = async ({ name, email, password, signature, recaptchaToken }: TSignUpFormSchema) => {
     try {
+      // Reset reCAPTCHA after form submission
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+        form.setValue('recaptchaToken', '');
+      }
+
       await authClient.emailPassword.signUp({
         name,
         email,
         password,
         signature,
+        recaptchaToken,
       });
 
       await navigate(`/unverified-account`);
@@ -316,7 +329,28 @@ export const SignUpForm = ({
                 </>
               )}
 
-              <p className="text-muted-foreground mt-4 text-sm">
+              <FormField
+                control={form.control}
+                name="recaptchaToken"
+                render={({ field: { onChange } }) => (
+                  <FormItem>
+                    <FormControl>
+                      <div className="flex justify-center my-4">
+                        <ClientOnly>
+                          <ReCAPTCHA
+                            ref={recaptchaRef}
+                            sitekey={typeof window !== 'undefined' ? window.ENV?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LfEjZ8rAAAAAENDoqHf53o-JBp-nHiaFvaCSib2' : ''}
+                            onChange={(token) => onChange(token || '')}
+                          />
+                        </ClientOnly>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <p className="text-muted-foreground mt-6 text-sm">
                 <Trans>
                   Already have an account?{' '}
                   <Link to="/signin" className="text-documenso-700 duration-200 hover:opacity-70">
@@ -330,26 +364,18 @@ export const SignUpForm = ({
               loading={form.formState.isSubmitting}
               type="submit"
               size="lg"
-              className="mt-6 w-full"
+              className="mt-12 w-full"
             >
               <Trans>Complete</Trans>
             </Button>
           </form>
         </Form>
-        <p className="text-muted-foreground mt-6 text-xs">
+        <p className="text-muted-foreground mt-8 text-xs">
           <Trans>
             By proceeding, you agree to our{' '}
+
             <Link
-              to="https://documen.so/terms"
-              target="_blank"
-              className="text-documenso-700 duration-200 hover:opacity-70"
-            >
-              Terms of Service
-            </Link>{' '}
-            and{' '}
-            <Link
-              to="https://documen.so/privacy"
-              target="_blank"
+              to="/articles/privacy-policy"
               className="text-documenso-700 duration-200 hover:opacity-70"
             >
               Privacy Policy

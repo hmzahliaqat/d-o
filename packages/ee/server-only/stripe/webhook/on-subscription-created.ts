@@ -56,13 +56,56 @@ export const onSubscriptionCreated = async ({ subscription }: OnSubscriptionCrea
   if (!claim) {
     console.error(`Subscription claim on ${subscriptionItem.price.id} not found`);
 
-    throw Response.json(
-      {
-        success: false,
-        message: `Subscription claim on ${subscriptionItem.price.id} not found`,
-      } satisfies StripeWebhookResponse,
-      { status: 500 },
-    );
+    // Fallback: proceed without claim to at least persist subscription record.
+    // Try to find existing organisation by customerId and continue; skip claim updates.
+    const existingOrg = await prisma.organisation.findFirst({
+      where: { customerId },
+    });
+
+    if (!existingOrg) {
+      // If no organisation exists, return error (cannot create organisation without a claim)
+      throw Response.json(
+        {
+          success: false,
+          message: `Subscription claim on ${subscriptionItem.price.id} not found and no organisation associated with customer ${customerId}`,
+        } satisfies StripeWebhookResponse,
+        { status: 500 },
+      );
+    }
+
+    const status = match(subscription.status)
+      .with('active', () => SubscriptionStatus.ACTIVE)
+      .with('trialing', () => SubscriptionStatus.ACTIVE)
+      .with('past_due', () => SubscriptionStatus.PAST_DUE)
+      .otherwise(() => SubscriptionStatus.INACTIVE);
+
+    const periodEnd =
+      subscription.status === 'trialing' && subscription.trial_end
+        ? new Date(subscription.trial_end * 1000)
+        : new Date(subscription.current_period_end * 1000);
+
+    await prisma.subscription.upsert({
+      where: { organisationId: existingOrg.id },
+      create: {
+        organisationId: existingOrg.id,
+        status,
+        customerId,
+        planId: subscription.id,
+        priceId: subscription.items.data[0].price.id,
+        periodEnd,
+        cancelAtPeriodEnd: subscription.cancel_at_period_end,
+      },
+      update: {
+        status,
+        customerId,
+        planId: subscription.id,
+        priceId: subscription.items.data[0].price.id,
+        periodEnd,
+        cancelAtPeriodEnd: subscription.cancel_at_period_end,
+      },
+    });
+
+    return;
   }
 
   const organisationCreateData = subscription.metadata?.organisationCreateData;
