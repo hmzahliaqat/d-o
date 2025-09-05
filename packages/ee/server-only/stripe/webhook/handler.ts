@@ -18,12 +18,6 @@ export const stripeWebhookHandler = async (req: Request): Promise<Response> => {
   try {
     const isBillingEnabled = IS_BILLING_ENABLED();
 
-    const webhookSecret = env('NEXT_PRIVATE_STRIPE_WEBHOOK_SECRET');
-
-    if (!webhookSecret) {
-      throw new Error('Missing Stripe webhook secret');
-    }
-
     if (!isBillingEnabled) {
       return Response.json(
         {
@@ -34,20 +28,14 @@ export const stripeWebhookHandler = async (req: Request): Promise<Response> => {
       );
     }
 
+    const primarySecret = env('NEXT_PRIVATE_STRIPE_WEBHOOK_SECRET');
+    const altSecret = env('STRIPE_WEBHOOK_SECRET') ?? env('STRIPE_WEBHOOK_SIGNING_SECRET');
+    const webhookSecret = primarySecret ?? altSecret;
+
     const signature =
       typeof req.headers.get('stripe-signature') === 'string'
         ? req.headers.get('stripe-signature')
         : '';
-
-    if (!signature) {
-      return Response.json(
-        {
-          success: false,
-          message: 'No signature found in request',
-        } satisfies StripeWebhookResponse,
-        { status: 400 },
-      );
-    }
 
     const payload = await req.text();
 
@@ -61,7 +49,46 @@ export const stripeWebhookHandler = async (req: Request): Promise<Response> => {
       );
     }
 
-    const event = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
+    let event: Stripe.Event;
+
+    if (webhookSecret) {
+      if (!signature) {
+        return Response.json(
+          {
+            success: false,
+            message: 'No signature found in request',
+          } satisfies StripeWebhookResponse,
+          { status: 400 },
+        );
+      }
+
+      event = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
+    } else {
+      // In development, allow unsigned events to help local testing when webhook secret isn't configured.
+      if (env('NODE_ENV') === 'production') {
+        return Response.json(
+          {
+            success: false,
+            message:
+              'Missing Stripe webhook secret. Set NEXT_PRIVATE_STRIPE_WEBHOOK_SECRET (or STRIPE_WEBHOOK_SECRET) in your environment.',
+          } satisfies StripeWebhookResponse,
+          { status: 500 },
+        );
+      }
+
+      try {
+        event = JSON.parse(payload);
+        // eslint-disable-next-line no-console
+        console.warn(
+          '[Stripe Webhook] Using unsigned webhook event in non-production environment. Configure NEXT_PRIVATE_STRIPE_WEBHOOK_SECRET to enable signature verification.',
+        );
+      } catch {
+        return Response.json(
+          { success: false, message: 'Invalid JSON payload' } satisfies StripeWebhookResponse,
+          { status: 400 },
+        );
+      }
+    }
 
     /**
      * Notes:
@@ -129,10 +156,12 @@ export const stripeWebhookHandler = async (req: Request): Promise<Response> => {
       return err;
     }
 
+    const message = err instanceof Error ? err.message : 'Unknown error';
+
     return Response.json(
       {
         success: false,
-        message: 'Unknown error',
+        message,
       } satisfies StripeWebhookResponse,
       { status: 500 },
     );
