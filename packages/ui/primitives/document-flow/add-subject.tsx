@@ -216,24 +216,7 @@ export const AddSubjectFormPartial = ({
                       />
                     )}
 
-                    <FormField
-                      control={form.control}
-                      name="meta.emailReplyTo"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>
-                            <Trans>Reply To Email</Trans>{' '}
-                            <span className="text-muted-foreground">(Optional)</span>
-                          </FormLabel>
 
-                          <FormControl>
-                            <Input {...field} />
-                          </FormControl>
-
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
 
                     {/* <FormField
                       control={form.control}
@@ -254,49 +237,9 @@ export const AddSubjectFormPartial = ({
                       )}
                     /> */}
 
-                    <FormField
-                      control={form.control}
-                      name="meta.subject"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>
-                            <Trans>Subject</Trans>{' '}
-                            <span className="text-muted-foreground">(Optional)</span>
-                          </FormLabel>
 
-                          <FormControl>
-                            <Input {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
 
-                    <FormField
-                      control={form.control}
-                      name="meta.message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex flex-row items-center">
-                            <Trans>Message</Trans>{' '}
-                            <span className="text-muted-foreground">(Optional)</span>
-                            <Tooltip>
-                              <TooltipTrigger>
-                                <InfoIcon className="mx-2 h-4 w-4" />
-                              </TooltipTrigger>
-                              <TooltipContent className="text-muted-foreground p-4">
-                                <DocumentSendEmailMessageHelper />
-                              </TooltipContent>
-                            </Tooltip>
-                          </FormLabel>
 
-                          <FormControl>
-                            <Textarea className="bg-background mt-2 h-16 resize-none" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
 
                     <DocumentEmailCheckboxes
                       className="mt-2"

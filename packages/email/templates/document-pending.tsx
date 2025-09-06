@@ -36,7 +36,7 @@ export const DocumentPendingEmailTemplate = ({
               ) : (
                 <Img
                   src={getAssetUrl('/static/logo.png')}
-                  alt="Documenso Logo"
+                  alt=""
                   className="mb-4 h-6"
                 />
               )}

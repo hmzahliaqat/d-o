@@ -155,75 +155,9 @@ export const ConfigureDocumentRecipients = ({
         <Trans>Add signers and configure signing preferences</Trans>
       </p>
 
-      <FormField
-        control={control}
-        name="meta.signingOrder"
-        render={({ field }) => (
-          <FormItem className="mb-6 flex flex-row items-center space-x-2 space-y-0">
-            <FormControl>
-              <Checkbox
-                {...field}
-                id="signingOrder"
-                checked={field.value === DocumentSigningOrder.SEQUENTIAL}
-                onCheckedChange={(checked) =>
-                  onSigningOrderChange(
-                    checked ? DocumentSigningOrder.SEQUENTIAL : DocumentSigningOrder.PARALLEL,
-                  )
-                }
-                disabled={isSubmitting}
-              />
-            </FormControl>
-            <FormLabel
-              htmlFor="signingOrder"
-              className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              <Trans>Enable signing order</Trans>
-            </FormLabel>
-          </FormItem>
-        )}
-      />
 
-      <FormField
-        control={control}
-        name="meta.allowDictateNextSigner"
-        render={({ field: { value, ...field } }) => (
-          <FormItem className="mb-6 flex flex-row items-center space-x-2 space-y-0">
-            <FormControl>
-              <Checkbox
-                {...field}
-                id="allowDictateNextSigner"
-                checked={value}
-                onCheckedChange={field.onChange}
-                disabled={isSubmitting || !isSigningOrderEnabled}
-              />
-            </FormControl>
 
-            <div className="flex items-center">
-              <FormLabel
-                htmlFor="allowDictateNextSigner"
-                className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                <Trans>Allow signers to dictate next signer</Trans>
-              </FormLabel>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <span className="text-muted-foreground ml-1 cursor-help">
-                    <HelpCircle className="h-3.5 w-3.5" />
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent className="max-w-80 p-4">
-                  <p>
-                    <Trans>
-                      When enabled, signers can choose who should sign next in the sequence instead
-                      of following the predefined order.
-                    </Trans>
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </div>
-          </FormItem>
-        )}
-      />
+
 
       <DragDropContext
         onDragEnd={onDragEnd}

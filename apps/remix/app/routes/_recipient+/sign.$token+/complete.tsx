@@ -204,7 +204,6 @@ export default function CompletedSigningPage({ loaderData }: Route.ComponentProp
             ))}
 
           <div className="mt-8 flex w-full max-w-sm items-center justify-center gap-4">
-            <DocumentShareButton documentId={document.id} token={recipient.token} />
 
             {isDocumentCompleted(document.status) ? (
               <DocumentDownloadButton
@@ -232,21 +231,7 @@ export default function CompletedSigningPage({ loaderData }: Route.ComponentProp
         </div>
 
         <div className="flex flex-col items-center">
-          {canSignUp && (
-            <div className="flex max-w-xl flex-col items-center justify-center p-4 md:p-12">
-              <h2 className="mt-8 text-center text-xl font-semibold md:mt-0">
-                <Trans>Need to sign documents?</Trans>
-              </h2>
 
-              <p className="text-muted-foreground/60 mt-4 max-w-[55ch] text-center leading-normal">
-                <Trans>
-                  Create your account and start using state-of-the-art document signing.
-                </Trans>
-              </p>
-
-              <ClaimAccount defaultName={recipientName} defaultEmail={recipient.email} />
-            </div>
-          )}
 
           {user && (
             <Link to="/" className="text-documenso-700 hover:text-documenso-600 mt-2">

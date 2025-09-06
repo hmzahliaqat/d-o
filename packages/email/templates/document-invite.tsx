@@ -23,10 +23,10 @@ export type DocumentInviteEmailTemplateProps = Partial<TemplateDocumentInvitePro
 };
 
 export const DocumentInviteEmailTemplate = ({
-  inviterName = 'Lucas Smith',
-  inviterEmail = 'lucas@documenso.com',
+  inviterName = 'Hamza Liaqat',
+  inviterEmail = 'hamza@clickesignature.com',
   documentName = 'Open Source Pledge.pdf',
-  signDocumentLink = 'https://documenso.com',
+  signDocumentLink = 'https://clickesignature.com',
   assetBaseUrl = 'http://localhost:3002',
   customBody,
   role,
@@ -69,8 +69,8 @@ export const DocumentInviteEmailTemplate = ({
                 <Img src={branding.brandingLogo} alt="Branding Logo" className="mb-4 h-6" />
               ) : (
                 <Img
-                  src={getAssetUrl('/static/logo.png')}
-                  alt="Documenso Logo"
+                  src={getAssetUrl('/static/logo22.png')}
+                  alt="Clickesignature Logo"
                   className="mb-4 h-6"
                 />
               )}
