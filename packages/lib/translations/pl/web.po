@@ -826,8 +826,8 @@ msgstr "Akcje"
 msgid "Active"
 msgstr "Aktywne"
 
-#: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 #: apps/remix/app/routes/_authenticated+/settings+/security.sessions.tsx
+#: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 msgid "Active sessions"
 msgstr "Aktywne sesje"
 
@@ -1432,8 +1432,8 @@ msgstr "Jakiekolwiek źródło"
 msgid "Any Status"
 msgstr "Jakikolwiek status"
 
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.tokens.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 msgid "API Tokens"
 msgstr "Tokeny API"
 
@@ -1659,8 +1659,8 @@ msgstr "Baner został zaktualizowany"
 msgid "Before you get started, please confirm your email address by clicking the button below:"
 msgstr "Zanim zaczniesz, proszę potwierdź swój adres e-mail, klikając przycisk poniżej:"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.billing.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/components/general/settings-nav-mobile.tsx
 #: apps/remix/app/components/general/settings-nav-desktop.tsx
 msgid "Billing"
@@ -2639,8 +2639,8 @@ msgid "delete"
 msgstr "usuń"
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups.$id.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.tokens.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
@@ -3257,8 +3257,8 @@ msgstr ""
 
 #: apps/remix/app/routes/_profile+/p.$url.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents._index.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents.$id._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents.$id.edit.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/documents.$id._index.tsx
 #: apps/remix/app/routes/_authenticated+/super-admin+/_layout.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 #: apps/remix/app/components/tables/admin-users-table.tsx
@@ -3440,8 +3440,8 @@ msgstr "Ujawnienie podpisu elektronicznego"
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/certificate.tsx
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/certificate.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl.employees._index.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains.$id.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/employees._index.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/users.$id.tsx
@@ -3516,9 +3516,9 @@ msgstr "Domena nie znaleziona znaleziona"
 msgid "Email Domain Settings"
 msgstr "Ustawienia domeny"
 
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains._index.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains._index.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains._index.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email-domains._index.tsx
 msgid "Email Domains"
 msgstr "Domeny"
 
@@ -3741,14 +3741,14 @@ msgstr "Wprowadź swój tekst tutaj"
 msgid "Enterprise"
 msgstr "Enterprise"
 
+#: apps/remix/app/routes/embed+/v1+/authoring+/template.edit.$id.tsx
+#: apps/remix/app/routes/embed+/v1+/authoring+/template.edit.$id.tsx
+#: apps/remix/app/routes/embed+/v1+/authoring+/document.edit.$id.tsx
+#: apps/remix/app/routes/embed+/v1+/authoring+/document.edit.$id.tsx
 #: apps/remix/app/routes/_authenticated+/settings+/security.sessions.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/users.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/documents.$id.tsx
-#: apps/remix/app/routes/embed+/v1+/authoring+/template.edit.$id.tsx
-#: apps/remix/app/routes/embed+/v1+/authoring+/template.edit.$id.tsx
-#: apps/remix/app/routes/embed+/v1+/authoring+/document.edit.$id.tsx
-#: apps/remix/app/routes/embed+/v1+/authoring+/document.edit.$id.tsx
 #: apps/remix/app/components/general/verify-email-banner.tsx
 #: apps/remix/app/components/general/template/template-edit-form.tsx
 #: apps/remix/app/components/general/template/template-edit-form.tsx
@@ -4070,8 +4070,8 @@ msgstr "Swobodny podpis"
 msgid "Full Name"
 msgstr "Imię i nazwisko"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.general.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/components/general/template/template-edit-form.tsx
 #: apps/remix/app/components/general/document/document-edit-form.tsx
@@ -4121,8 +4121,8 @@ msgstr "Wróć"
 msgid "Go back home"
 msgstr "Wróć do domu"
 
-#: apps/remix/app/routes/_recipient+/sign.$token+/_index.tsx
 #: apps/remix/app/routes/_recipient+/sign.$token+/complete.tsx
+#: apps/remix/app/routes/_recipient+/sign.$token+/_index.tsx
 msgid "Go Back Home"
 msgstr "Wróć do domu"
 
@@ -4865,9 +4865,9 @@ msgstr "Ilość członków"
 msgid "Member Since"
 msgstr "Data dołączenia"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups.$id.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/components/tables/team-groups-table.tsx
 #: apps/remix/app/components/tables/organisation-groups-table.tsx
@@ -5449,8 +5449,8 @@ msgstr "Nazwa klucza dostępu"
 msgid "Passkey Re-Authentication"
 msgstr "Ponowna Autoryzacja Klucza Dostępu"
 
-#: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 #: apps/remix/app/routes/_authenticated+/settings+/security.passkeys.tsx
+#: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 msgid "Passkeys"
 msgstr "Klucze dostępu"
 
@@ -5764,8 +5764,8 @@ msgstr "Podgląd"
 msgid "Preview and configure template."
 msgstr "Podgląd i konfiguracja szablonu."
 
-#: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/privacy-policy.tsx
+#: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 msgid "Privacy Policy"
 msgstr ""
 
@@ -5823,8 +5823,8 @@ msgstr "Postęp"
 msgid "Public"
 msgstr "Publiczny"
 
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 msgid "Public Profile"
 msgstr "Profil publiczny"
 
@@ -6289,8 +6289,8 @@ msgstr "Szukaj języków..."
 msgid "Secret"
 msgstr "Sekret"
 
-#: apps/remix/app/routes/_authenticated+/super-admin+/_layout.tsx
 #: apps/remix/app/routes/_authenticated+/super-admin+/dashboard.tsx
+#: apps/remix/app/routes/_authenticated+/super-admin+/_layout.tsx
 #: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 #: apps/remix/app/components/general/settings-nav-mobile.tsx
 #: apps/remix/app/components/general/settings-nav-desktop.tsx
@@ -6817,8 +6817,8 @@ msgstr "Od {0}"
 msgid "Site Banner"
 msgstr "Baner strony"
 
-#: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/site-settings.tsx
+#: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 msgid "Site Settings"
 msgstr "Ustawienia strony"
 
@@ -7012,13 +7012,13 @@ msgstr "Subskrypcja nieważna"
 msgid "Subscription Plans"
 msgstr ""
 
+#: apps/remix/app/routes/embed+/v1+/authoring+/template.edit.$id.tsx
+#: apps/remix/app/routes/embed+/v1+/authoring+/document.edit.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/documents.$id.tsx
-#: apps/remix/app/routes/embed+/v1+/authoring+/template.edit.$id.tsx
-#: apps/remix/app/routes/embed+/v1+/authoring+/document.edit.$id.tsx
 #: apps/remix/app/components/tables/settings-security-passkey-table-actions.tsx
 #: apps/remix/app/components/tables/settings-security-passkey-table-actions.tsx
 #: apps/remix/app/components/tables/organisation-member-invites-table.tsx
@@ -7107,8 +7107,8 @@ msgstr "Wymagania systemowe"
 msgid "System security settings"
 msgstr ""
 
-#: apps/remix/app/routes/_authenticated+/super-admin+/_layout.tsx
 #: apps/remix/app/routes/_authenticated+/super-admin+/dashboard.tsx
+#: apps/remix/app/routes/_authenticated+/super-admin+/_layout.tsx
 #: apps/remix/app/components/general/app-nav-mobile.tsx
 #: apps/remix/app/components/general/app-nav-desktop.tsx
 msgid "System Settings"
@@ -7247,8 +7247,8 @@ msgstr "Adres URL zespołu"
 msgid "Team URL"
 msgstr "Adres URL zespołu"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.teams.tsx
+#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
 #: apps/remix/app/components/general/org-menu-switcher.tsx
 msgid "Teams"
 msgstr "Zespoły"
@@ -7261,8 +7261,8 @@ msgstr "Zespoły pomagają Ci organizować pracę i współpracować z innymi. S
 msgid "Teams that this organisation group is currently assigned to"
 msgstr "Zespoły, do których obecnie przypisana jest ta grupa organizacji"
 
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/templates.$id._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/templates.$id.edit.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/templates.$id._index.tsx
 #: apps/remix/app/components/general/template/template-page-view-documents-table.tsx
 #: apps/remix/app/components/general/template/template-page-view-documents-table.tsx
 #: apps/remix/app/components/general/template/template-page-view-documents-table.tsx
@@ -8233,8 +8233,8 @@ msgid "Unable to sign in"
 msgstr "Nie można się zalogować"
 
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings._layout.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.tokens.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-auth-password.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-auth-2fa.tsx
 msgid "Unauthorized"
@@ -8529,8 +8529,8 @@ msgstr "Agent Użytkownika"
 msgid "User has no password."
 msgstr "Użytkownik nie ma hasła."
 
-#: apps/remix/app/routes/_authenticated+/super-admin+/_layout.tsx
 #: apps/remix/app/routes/_authenticated+/super-admin+/dashboard.tsx
+#: apps/remix/app/routes/_authenticated+/super-admin+/_layout.tsx
 #: apps/remix/app/components/general/app-nav-mobile.tsx
 #: apps/remix/app/components/general/app-nav-desktop.tsx
 msgid "User Management"
@@ -8651,8 +8651,8 @@ msgstr "Zobacz wszystkie powiązane dokumenty"
 msgid "View all security activity related to your account."
 msgstr "Wyświetl wszystkie aktywności związane z bezpieczeństwem twojego konta."
 
-#: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 #: apps/remix/app/routes/_authenticated+/settings+/security.sessions.tsx
+#: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 msgid "View and manage all active sessions for your account."
 msgstr "Przeglądaj i zarządzaj wszystkimi aktywnymi sesjami swojego konta."
 
@@ -9117,8 +9117,8 @@ msgstr "Webhook zaktualizowany"
 msgid "Webhook URL"
 msgstr "URL webhooka"
 
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
+#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings._layout.tsx
 msgid "Webhooks"
 msgstr "Webhooki"
 
