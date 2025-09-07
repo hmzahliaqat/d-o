@@ -100,7 +100,9 @@ export const internalClaims: InternalClaims = {
     teamCount: 1,
     memberCount: 1,
     locked: true,
-    flags: {},
+    flags: {
+      unlimitedDocuments: true,
+    },
   },
   [INTERNAL_CLAIM_ID.INDIVIDUAL]: {
     id: INTERNAL_CLAIM_ID.INDIVIDUAL,
