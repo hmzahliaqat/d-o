@@ -18,10 +18,21 @@ export const updateSiteSettingRoute = adminProcedure
       },
     });
 
-    await upsertSiteSetting({
-      id,
-      enabled,
-      data,
-      userId: ctx.user.id,
-    });
+    await upsertSiteSetting(
+      id === 'site.banner'
+        ? {
+          id,
+          enabled,
+          data: data as { content: string; textColor: string; bgColor: string },
+          userId: ctx.user.id,
+        }
+        : {
+          id,
+          enabled,
+          data: data as { content: string },
+          userId: ctx.user.id,
+        }
+    );
+
+
   });

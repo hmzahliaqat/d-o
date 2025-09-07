@@ -40,8 +40,7 @@ export default function DashboardPage() {
   // Fetch document statistics
   const { data: documentData, isLoading: isLoadingDocuments } = trpc.document.findDocumentsInternal.useQuery(
     {
-      teamId: team.id,
-      perPage: 10, // We only need the stats, not the actual documents
+      perPage: 10,
     },
     {
       placeholderData: (previousData) => previousData,

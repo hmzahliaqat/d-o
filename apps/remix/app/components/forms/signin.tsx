@@ -377,7 +377,7 @@ export const SignInForm = ({
                     <ClientOnly>
                       <ReCAPTCHA
                         ref={recaptchaRef}
-                        sitekey={typeof window !== 'undefined' ? window.ENV?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LfEjZ8rAAAAAENDoqHf53o-JBp-nHiaFvaCSib2' : ''}
+                        sitekey={'6LfEjZ8rAAAAAENDoqHf53o-JBp-nHiaFvaCSib2'}
                         onChange={(token) => onChange(token || '')}
                       />
                     </ClientOnly>

@@ -13,4 +13,4 @@ export const IS_BILLING_ENABLED = () => true; // Always enable billing functiona
 
 export const API_V2_BETA_URL = '/api/v2-beta';
 
-export const SUPPORT_EMAIL = env('NEXT_PUBLIC_SUPPORT_EMAIL') ?? 'support@documenso.com';
+export const SUPPORT_EMAIL = env('NEXT_PUBLIC_SUPPORT_EMAIL') ?? '';

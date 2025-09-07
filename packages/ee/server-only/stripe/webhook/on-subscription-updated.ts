@@ -91,6 +91,7 @@ export const onSubscriptionUpdated = async ({
       where: { organisationId: organisation.id },
       create: {
         organisationId: organisation.id,
+        customerId,
         status,
         planId: subscription.id,
         priceId: subscription.items.data[0].price.id,
@@ -99,6 +100,7 @@ export const onSubscriptionUpdated = async ({
       },
       update: {
         status,
+        customerId,
         planId: subscription.id,
         priceId: subscription.items.data[0].price.id,
         periodEnd,

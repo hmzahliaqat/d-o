@@ -6,7 +6,7 @@ import { prisma } from '@documenso/prisma';
 import type { Route } from './+types/branding.logo.team.$teamId';
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const organisationId = params.orgId;
+  const organisationId = params.teamId;
 
   if (!organisationId) {
     return Response.json(

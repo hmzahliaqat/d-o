@@ -20,7 +20,6 @@ import { PDFViewer } from '@documenso/ui/primitives/pdf-viewer';
 import { DocumentPageViewButton } from '~/components/general/document/document-page-view-button';
 import { DocumentPageViewDropdown } from '~/components/general/document/document-page-view-dropdown';
 import { DocumentPageViewInformation } from '~/components/general/document/document-page-view-information';
-import { DocumentPageViewRecentActivity } from '~/components/general/document/document-page-view-recent-activity';
 import { DocumentPageViewRecipients } from '~/components/general/document/document-page-view-recipients';
 import { DocumentRecipientLinkCopyDialog } from '~/components/general/document/document-recipient-link-copy-dialog';
 import {
@@ -228,8 +227,7 @@ export default function DocumentPage() {
             {/* Recipients section. */}
             <DocumentPageViewRecipients document={document} documentRootPath={documentRootPath} />
 
-            {/* Recent activity section. */}
-            <DocumentPageViewRecentActivity documentId={document.id} userId={user.id} />
+
           </div>
         </div>
       </div>

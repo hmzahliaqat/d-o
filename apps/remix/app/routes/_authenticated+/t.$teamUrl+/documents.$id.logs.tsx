@@ -15,13 +15,11 @@ import { logDocumentAccess } from '@documenso/lib/utils/logger';
 import { formatDocumentsPath } from '@documenso/lib/utils/teams';
 import { Card } from '@documenso/ui/primitives/card';
 
-import { DocumentAuditLogDownloadButton } from '~/components/general/document/document-audit-log-download-button';
 import { DocumentCertificateDownloadButton } from '~/components/general/document/document-certificate-download-button';
 import {
   DocumentStatus as DocumentStatusComponent,
   FRIENDLY_STATUS_MAP,
 } from '~/components/general/document/document-status';
-import { DocumentLogsTable } from '~/components/tables/document-logs-table';
 
 import type { Route } from './+types/documents.$id.logs';
 
@@ -158,7 +156,6 @@ export default function DocumentsLogsPage({ loaderData }: Route.ComponentProps) 
               documentStatus={document.status}
             />
 
-            <DocumentAuditLogDownloadButton documentId={document.id} />
           </div>
         </div>
       </div>
@@ -185,9 +182,7 @@ export default function DocumentsLogsPage({ loaderData }: Route.ComponentProps) 
         </Card>
       </section>
 
-      <section className="mt-6">
-        <DocumentLogsTable documentId={document.id} />
-      </section>
+
     </div>
   );
 }

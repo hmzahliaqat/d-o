@@ -4,10 +4,8 @@ import { createDocumentTemporaryRoute } from './create-document-temporary';
 import { deleteDocumentRoute } from './delete-document';
 import { distributeDocumentRoute } from './distribute-document';
 import { downloadDocumentRoute } from './download-document';
-import { downloadDocumentAuditLogsRoute } from './download-document-audit-logs';
 import { downloadDocumentCertificateRoute } from './download-document-certificate';
 import { duplicateDocumentRoute } from './duplicate-document';
-import { findDocumentAuditLogsRoute } from './find-document-audit-logs';
 import { findDocumentsRoute } from './find-documents';
 import { findDocumentsInternalRoute } from './find-documents-internal';
 import { findInboxRoute } from './find-inbox';
@@ -38,10 +36,7 @@ export const documentRouter = router({
   getDocumentByToken: getDocumentByTokenRoute,
   findDocumentsInternal: findDocumentsInternalRoute,
 
-  auditLog: {
-    find: findDocumentAuditLogsRoute,
-    download: downloadDocumentAuditLogsRoute,
-  },
+
   inbox: router({
     find: findInboxRoute,
     getCount: getInboxCountRoute,
