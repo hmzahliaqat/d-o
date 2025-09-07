@@ -23,12 +23,12 @@ export const createDocumentRoute = authenticatedProcedure
 
     const { remaining } = await getServerLimits({ userId: user.id, teamId });
 
-    if (remaining.documents <= 0) {
-      throw new AppError(AppErrorCode.LIMIT_EXCEEDED, {
-        message: 'You have reached your document limit for this month. Please upgrade your plan.',
-        statusCode: 400,
-      });
-    }
+    // if (remaining.documents <= 0) {
+    //   throw new AppError(AppErrorCode.LIMIT_EXCEEDED, {
+    //     message: 'You have reached your document limit for this month. Please upgrade your plan.',
+    //     statusCode: 400,
+    //   });
+    // }
 
     const document = await createDocument({
       userId: user.id,

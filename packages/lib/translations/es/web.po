@@ -8999,8 +8999,8 @@ msgid "Welcome to Clickesignature"
 msgstr ""
 
 #: packages/email/template-components/template-confirmation-email.tsx
-msgid "Welcome to Documenso!"
-msgstr "¡Bienvenido a Documenso!"
+msgid "Welcome to Clickesignature!"
+msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/super-admin+/dashboard.tsx
 msgid "Welcome, Super Admin"

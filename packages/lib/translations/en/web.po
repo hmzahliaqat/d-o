@@ -9008,8 +9008,8 @@ msgid "Welcome to Clickesignature"
 msgstr "Welcome to Clickesignature"
 
 #: packages/email/template-components/template-confirmation-email.tsx
-msgid "Welcome to Documenso!"
-msgstr "Welcome to Documenso!"
+msgid "Welcome to Clickesignature!"
+msgstr "Welcome to Clickesignature!"
 
 #: apps/remix/app/routes/_authenticated+/super-admin+/dashboard.tsx
 msgid "Welcome, Super Admin"

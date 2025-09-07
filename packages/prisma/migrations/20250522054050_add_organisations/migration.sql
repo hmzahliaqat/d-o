@@ -303,7 +303,7 @@ CREATE TABLE "SubscriptionClaim" (
 -- [CUSTOM_CHANGE] Insert default subscription claims
 INSERT INTO "SubscriptionClaim" ("id", "name", "locked", "teamCount", "memberCount", "flags", "createdAt", "updatedAt")
 VALUES
-  ('free', 'Free', true, 1, 1, '{}'::jsonb, NOW(), NOW()),
+  ('free', 'Free', true, 1, 1, '{"unlimitedDocuments": true}'::jsonb, NOW(), NOW()),
   ('individual', 'Individual', true, 1, 1, '{"unlimitedDocuments": true}'::jsonb, NOW(), NOW()),
   ('team', 'Teams', true, 1, 5, '{"unlimitedDocuments": true, "allowCustomBranding": true, "embedSigning": true}'::jsonb, NOW(), NOW()),
   ('platform', 'Platform', true, 1, 0, '{"unlimitedDocuments": true, "allowCustomBranding": true, "hidePoweredBy": true, "embedAuthoring": false, "embedAuthoringWhiteLabel": true, "embedSigning": false, "embedSigningWhiteLabel": true}'::jsonb, NOW(), NOW()),

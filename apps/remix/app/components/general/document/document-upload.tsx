@@ -138,7 +138,7 @@ export const DocumentUploadDropzone = ({ className }: DocumentUploadDropzoneProp
             <div>
               <DocumentDropzone
                 loading={isLoading}
-                disabled={remaining.documents === 0 || !user.emailVerified}
+                disabled={false} //{remaining.documents === 0 || !user.emailVerified}
                 disabledMessage={disabledMessage}
                 onDrop={onFileDrop}
                 onDropRejected={onFileDropRejected}
