@@ -1,6 +1,8 @@
 import { msg } from '@lingui/core/macro';
 import { Trans } from '@lingui/react/macro';
-import { Link, Outlet, redirect } from 'react-router';
+import { Link, Outlet, redirect, useLocation, useNavigate } from 'react-router';
+import { useEffect } from 'react';
+import { env } from '@documenso/lib/utils/env';
 
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
 import { OrganisationProvider } from '@documenso/lib/client-only/providers/organisation';
@@ -42,34 +44,64 @@ export async function loader({ request }: Route.LoaderArgs) {
   };
 }
 
+
 export default function Layout({ loaderData, params }: Route.ComponentProps) {
   const { banner } = loaderData;
-
   const { user, organisations } = useSession();
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const teamUrl = params.teamUrl;
   const orgUrl = params.orgUrl;
-
   const teams = organisations.flatMap((org) => org.teams);
-
   const extractCurrentOrganisation = () => {
     if (orgUrl) {
       return organisations.find((org) => org.url === orgUrl);
     }
-
-    // Search organisations to find the team since we don't have access to the orgUrl in the URL.
     if (teamUrl) {
       return organisations.find((org) => org.teams.some((team) => team.url === teamUrl));
     }
-
     return null;
   };
-
   const currentTeam = teams.find((team) => team.url === teamUrl);
   const currentOrganisation = extractCurrentOrganisation() || null;
-
   const orgNotFound = params.orgUrl && !currentOrganisation;
   const teamNotFound = params.teamUrl && !currentTeam;
+
+  // --- Trial Expiry Frontend Guard ---
+  const trialEnabled = env('NEXT_PUBLIC_TRAIL_PERIOD_ENABLED') === 'true';
+  function isTrialExpired(createdAt: string | Date | undefined, trialDays = 3) {
+    if (!createdAt) return false;
+    const created = new Date(createdAt).getTime();
+    const now = Date.now();
+    const msInDay = 24 * 60 * 60 * 1000;
+    return now - created > trialDays * msInDay;
+  }
+  const trialExpired = trialEnabled ? isTrialExpired(user?.createdAt, 3) : false;
+  const isBillingRoute = location.pathname.includes('/settings/billing');
+
+  useEffect(() => {
+    if (trialEnabled && trialExpired && !isBillingRoute) {
+      navigate('/settings/billing', { replace: true });
+    }
+  }, [trialEnabled, trialExpired, isBillingRoute, navigate]);
+
+  const trialBanner = trialEnabled && trialExpired ? (
+    <div style={{ background: '#fef3c7', color: '#92400e' }} className="w-full text-center py-2 text-sm font-medium z-[100] flex flex-col items-center gap-1">
+      <span>Your free trial has expired. Please upgrade your plan to continue using the application.</span>
+      <Link
+        to="/settings/billing"
+        className="inline-block mt-1 px-3 py-1 rounded bg-yellow-300 text-yellow-900 font-semibold hover:bg-yellow-400 transition-colors text-xs border border-yellow-400"
+      >
+        Upgrade Now
+      </Link>
+    </div>
+  ) : null;
+
+  if (trialEnabled && trialExpired && !isBillingRoute) {
+    return (
+      <>{trialBanner}</>
+    );
+  }
 
   if (orgNotFound || teamNotFound) {
     return (
@@ -104,14 +136,11 @@ export default function Layout({ loaderData, params }: Route.ComponentProps) {
   return (
     <OrganisationProvider organisation={currentOrganisation}>
       <TeamProvider team={currentTeam || null}>
+        {trialBanner}
         <OrganisationBillingBanner />
-
         {!user.emailVerified && <VerifyEmailBanner email={user.email} />}
-
         {banner && <AppBanner banner={banner} />}
-
         <Header />
-
         <main className="mt-8 pb-8 md:mt-12 md:pb-12">
           <Outlet />
         </main>

@@ -1,4 +1,15 @@
 import { type HTMLAttributes, useEffect, useState } from 'react';
+import { env } from '@documenso/lib/utils/env';
+// Helper to calculate days left in trial
+function getTrialDaysLeft(createdAt: string | Date | undefined, trialDays = 3) {
+  if (!createdAt) return null;
+  const created = new Date(createdAt).getTime();
+  const now = Date.now();
+  const msInDay = 24 * 60 * 60 * 1000;
+  const daysPassed = Math.floor((now - created) / msInDay);
+  const daysLeft = trialDays - daysPassed;
+  return daysLeft > 0 ? daysLeft : 0;
+}
 
 import { ReadStatus } from '@prisma/client';
 import { InboxIcon, MenuIcon, SearchIcon } from 'lucide-react';
@@ -24,14 +35,11 @@ export type HeaderProps = HTMLAttributes<HTMLDivElement>;
 
 export const Header = ({ className, ...props }: HeaderProps) => {
   const params = useParams();
-
   const { organisations, user } = useSession();
   const isAdminUser = user ? isAdmin(user) : false;
-
   const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-
   const { data: unreadCountData } = trpc.document.inbox.getCount.useQuery(
     {
       readStatus: ReadStatus.NOT_OPENED,
@@ -40,72 +48,81 @@ export const Header = ({ className, ...props }: HeaderProps) => {
       // refetchInterval: 30000, // Refetch every 30 seconds
     },
   );
+  // Calculate trial days left
+  const trialEnabled = env('NEXT_PUBLIC_TRAIL_PERIOD_ENABLED') === 'true';
+  const trialDaysLeft = trialEnabled ? getTrialDaysLeft(user?.createdAt, 3) : null;
 
   useEffect(() => {
     const onScroll = () => {
       setScrollY(window.scrollY);
     };
-
     window.addEventListener('scroll', onScroll);
-
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <header
-      className={cn(
-        'supports-backdrop-blur:bg-background/60 bg-background/95 sticky top-0 z-[60] flex h-16 w-full items-center border-b border-b-transparent backdrop-blur duration-200',
-        scrollY > 5 && 'border-b-border',
-        className,
-      )}
-      {...props}
-    >
-      <div className="mx-auto flex w-full max-w-screen-xl items-center justify-between gap-x-4 px-4 md:justify-normal md:px-8">
-        <Link
-          to={`${getRootHref(params, { returnEmptyRootString: true })}`}
-          className="focus-visible:ring-ring ring-offset-background hidden rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 md:inline"
-        >
-          <BrandingLogo className="h-14 w-auto" />
-        </Link>
-
-        <AppNavDesktop setIsCommandMenuOpen={setIsCommandMenuOpen} />
-
-        {/* Hide inbox button for admin users */}
-        {!isAdminUser && (
-          <Button asChild variant="outline" className="relative hidden h-10 w-10 rounded-lg md:flex">
-            <Link to="/inbox" className="relative block h-10 w-10">
-              <InboxIcon className="text-muted-foreground hover:text-foreground h-5 w-5 flex-shrink-0 transition-colors" />
-
-              {unreadCountData && unreadCountData.count > 0 && (
-                <span className="bg-primary text-primary-foreground absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-semibold">
-                  {unreadCountData.count > 99 ? '99+' : unreadCountData.count}
-                </span>
-              )}
-            </Link>
-          </Button>
+    <>
+      <header
+        className={cn(
+          'supports-backdrop-blur:bg-background/60 bg-background/95 sticky top-0 z-[60] flex h-16 w-full items-center border-b border-b-transparent backdrop-blur duration-200',
+          scrollY > 5 && 'border-b-border',
+          className,
         )}
-
-        <div className="md:ml-4">
-          {isPersonalLayout(organisations) ? <MenuSwitcher /> : <OrgMenuSwitcher />}
+        {...props}
+      >
+        <div className="mx-auto flex w-full max-w-screen-xl items-center justify-between gap-x-4 px-4 md:justify-normal md:px-8">
+          <Link
+            to={`${getRootHref(params, { returnEmptyRootString: true })}`}
+            className="focus-visible:ring-ring ring-offset-background hidden rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 md:inline"
+          >
+            <BrandingLogo className="h-14 w-auto" />
+          </Link>
+          <AppNavDesktop setIsCommandMenuOpen={setIsCommandMenuOpen} />
+          {/* Hide inbox button for admin users */}
+          {!isAdminUser && (
+            <Button asChild variant="outline" className="relative hidden h-10 w-10 rounded-lg md:flex">
+              <Link to="/inbox" className="relative block h-10 w-10">
+                <InboxIcon className="text-muted-foreground hover:text-foreground h-5 w-5 flex-shrink-0 transition-colors" />
+                {unreadCountData && unreadCountData.count > 0 && (
+                  <span className="bg-primary text-primary-foreground absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-semibold">
+                    {unreadCountData.count > 99 ? '99+' : unreadCountData.count}
+                  </span>
+                )}
+              </Link>
+            </Button>
+          )}
+          <div className="md:ml-4">
+            {isPersonalLayout(organisations) ? <MenuSwitcher /> : <OrgMenuSwitcher />}
+          </div>
+          <div className="flex flex-row items-center space-x-4 md:hidden">
+            <button onClick={() => setIsCommandMenuOpen(true)}>
+              <SearchIcon className="text-muted-foreground h-6 w-6" />
+            </button>
+            <button onClick={() => setIsHamburgerMenuOpen(true)}>
+              <MenuIcon className="text-muted-foreground h-6 w-6" />
+            </button>
+            <AppCommandMenu open={isCommandMenuOpen} onOpenChange={setIsCommandMenuOpen} />
+            <AppNavMobile
+              isMenuOpen={isHamburgerMenuOpen}
+              onMenuOpenChange={setIsHamburgerMenuOpen}
+            />
+          </div>
         </div>
-
-        <div className="flex flex-row items-center space-x-4 md:hidden">
-          <button onClick={() => setIsCommandMenuOpen(true)}>
-            <SearchIcon className="text-muted-foreground h-6 w-6" />
-          </button>
-
-          <button onClick={() => setIsHamburgerMenuOpen(true)}>
-            <MenuIcon className="text-muted-foreground h-6 w-6" />
-          </button>
-
-          <AppCommandMenu open={isCommandMenuOpen} onOpenChange={setIsCommandMenuOpen} />
-
-          <AppNavMobile
-            isMenuOpen={isHamburgerMenuOpen}
-            onMenuOpenChange={setIsHamburgerMenuOpen}
-          />
+      </header>
+      {/* Dynamic trial banner below nav */}
+      {trialEnabled && trialDaysLeft !== null && trialDaysLeft > 0 && (
+        <div className="w-full bg-yellow-100 text-yellow-900 text-center py-2 text-sm font-medium flex flex-col items-center gap-1">
+          <span>
+            You are on a free trial. {trialDaysLeft} day{trialDaysLeft !== 1 ? 's' : ''} left.
+          </span>
+          <Link
+            to="/settings/billing"
+            className="inline-block mt-1 px-3 py-1 rounded bg-yellow-300 text-yellow-900 font-semibold hover:bg-yellow-400 transition-colors text-xs border border-yellow-400"
+          >
+            Upgrade Now
+          </Link>
         </div>
-      </div>
-    </header>
+      )}
+    </>
   );
 };
