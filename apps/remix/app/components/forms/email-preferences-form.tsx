@@ -125,39 +125,39 @@ export const EmailPreferencesForm = ({
             />
           )}
 
-          <FormField
-            control={form.control}
-            name="emailReplyTo"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <Trans>Reply to email</Trans>
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    value={field.value ?? ''}
-                    onChange={(value) => field.onChange(value.target.value || null)}
-                    placeholder="noreply@example.com"
-                    type="email"
-                  />
-                </FormControl>
-                <FormMessage />
-                <FormDescription>
-                  <Trans>
-                    The email address which will show up in the "Reply To" field in emails
-                  </Trans>
+          {/*<FormField*/}
+          {/*  control={form.control}*/}
+          {/*  name="emailReplyTo"*/}
+          {/*  render={({ field }) => (*/}
+          {/*    <FormItem>*/}
+          {/*      <FormLabel>*/}
+          {/*        <Trans>Reply to email</Trans>*/}
+          {/*      </FormLabel>*/}
+          {/*      <FormControl>*/}
+          {/*        <Input*/}
+          {/*          {...field}*/}
+          {/*          value={field.value ?? ''}*/}
+          {/*          onChange={(value) => field.onChange(value.target.value || null)}*/}
+          {/*          placeholder="noreply@example.com"*/}
+          {/*          type="email"*/}
+          {/*        />*/}
+          {/*      </FormControl>*/}
+          {/*      <FormMessage />*/}
+          {/*      <FormDescription>*/}
+          {/*        <Trans>*/}
+          {/*          The email address which will show up in the "Reply To" field in emails*/}
+          {/*        </Trans>*/}
 
-                  {canInherit && (
-                    <span>
-                      {'. '}
-                      <Trans>Leave blank to inherit from the organisation.</Trans>
-                    </span>
-                  )}
-                </FormDescription>
-              </FormItem>
-            )}
-          />
+          {/*        {canInherit && (*/}
+          {/*          <span>*/}
+          {/*            {'. '}*/}
+          {/*            <Trans>Leave blank to inherit from the organisation.</Trans>*/}
+          {/*          </span>*/}
+          {/*        )}*/}
+          {/*      </FormDescription>*/}
+          {/*    </FormItem>*/}
+          {/*  )}*/}
+          {/*/>*/}
 
           {/* <FormField
             control={form.control}

@@ -170,11 +170,7 @@ const BillingDialog = ({
 
   const organisation = useCurrentOrganisation();
 
-  const [subscriptionOption, setSubscriptionOption] = useState<'update' | 'create'>(
-    organisation.type === 'PERSONAL' && claim === INTERNAL_CLAIM_ID.INDIVIDUAL
-      ? 'update'
-      : 'create',
-  );
+    const [subscriptionOption, setSubscriptionOption] = useState<'update' | 'create'>('update');
 
   const [step, setStep] = useState(0);
 
@@ -269,21 +265,21 @@ const BillingDialog = ({
                 </div>
               </div>
 
-              {/*<div className="flex items-start space-x-3 space-y-0">*/}
-              {/*  <RadioGroupItem value="create" id="create" />*/}
-              {/*  <div className="space-y-1.5 leading-none">*/}
-              {/*    <Label htmlFor="create" className="flex items-center gap-2 font-medium">*/}
-              {/*      <PlusIcon className="h-4 w-4" />*/}
-              {/*      <Trans>Create separate organisation</Trans>*/}
-              {/*    </Label>*/}
-              {/*    /!*<p className="text-muted-foreground text-sm">*!/*/}
-              {/*    /!*  <Trans>*!/*/}
-              {/*    /!*    Create a new organisation with {planName} plan. Keep your current organisation*!/*/}
-              {/*    /!*    on it's current plan*!/*/}
-              {/*    /!*  </Trans>*!/*/}
-              {/*    /!*</p>*!/*/}
-              {/*  </div>*/}
-              {/*</div>*/}
+                {/*<div className="flex items-start space-x-3 space-y-0">*/}
+                {/*  <RadioGroupItem value="create" id="create" />*/}
+                {/*  <div className="space-y-1.5 leading-none">*/}
+                {/*    <Label htmlFor="create" className="flex items-center gap-2 font-medium">*/}
+                {/*      <PlusIcon className="h-4 w-4" />*/}
+                {/*      <Trans>Create separate organisation</Trans>*/}
+                {/*    </Label>*/}
+                {/*    /!*<p className="text-muted-foreground text-sm">*!/*/}
+                {/*    /!*  <Trans>*!/*/}
+                {/*    /!*    Create a new organisation with {planName} plan. Keep your current organisation*!/*/}
+                {/*    /!*    on it's current plan*!/*/}
+                {/*    /!*  </Trans>*!/*/}
+                {/*    /!*</p>*!/*/}
+                {/*  </div>*/}
+                {/*</div>*/}
             </RadioGroup>
           </div>
         ) : (

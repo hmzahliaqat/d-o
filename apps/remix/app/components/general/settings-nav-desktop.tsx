@@ -53,29 +53,8 @@ export const SettingsDesktopNav = ({ className, ...props }: SettingsDesktopNavPr
             </Button>
           </Link>
 
-          <Link className="w-full pl-8" to="/settings/document">
-            <Button
-              variant="ghost"
-              className={cn(
-                'w-full justify-start',
-                pathname?.startsWith('/settings/document') && 'bg-secondary',
-              )}
-            >
-              <Trans>Document</Trans>
-            </Button>
-          </Link>
 
-          <Link className="w-full pl-8" to="/settings/branding">
-            <Button
-              variant="ghost"
-              className={cn(
-                'w-full justify-start',
-                pathname?.startsWith('/settings/branding') && 'bg-secondary',
-              )}
-            >
-              <Trans>Branding</Trans>
-            </Button>
-          </Link>
+
 
           <Link className="w-full pl-8" to="/settings/email">
             <Button
@@ -89,50 +68,7 @@ export const SettingsDesktopNav = ({ className, ...props }: SettingsDesktopNavPr
             </Button>
           </Link>
 
-          {/* Temporarily commented out Public Profile
-          <Link to="/settings/public-profile">
-            <Button
-              variant="ghost"
-              className={cn(
-                'w-full justify-start',
-                pathname?.startsWith('/settings/public-profile') && 'bg-secondary',
-              )}
-            >
-              <Globe2Icon className="mr-2 h-5 w-5" />
-              <Trans>Public Profile</Trans>
-            </Button>
-          </Link>
-          */}
 
-          {/* Temporarily commented out API Tokens
-          <Link to="/settings/tokens">
-            <Button
-              variant="ghost"
-              className={cn(
-                'w-full justify-start',
-                pathname?.startsWith('/settings/tokens') && 'bg-secondary',
-              )}
-            >
-              <BracesIcon className="mr-2 h-5 w-5" />
-              <Trans>API Tokens</Trans>
-            </Button>
-          </Link>
-          */}
-
-          {/* Temporarily commented out Webhooks
-          <Link to="/settings/webhooks">
-            <Button
-              variant="ghost"
-              className={cn(
-                'w-full justify-start',
-                pathname?.startsWith('/settings/webhooks') && 'bg-secondary',
-              )}
-            >
-              <WebhookIcon className="mr-2 h-5 w-5" />
-              <Trans>Webhooks</Trans>
-            </Button>
-          </Link>
-          */}
 
           <Link to="/settings/billing">
             <Button
@@ -149,20 +85,6 @@ export const SettingsDesktopNav = ({ className, ...props }: SettingsDesktopNavPr
         </>
       )}
 
-      {/* Temporarily commented out Organisations
-      <Link to="/settings/organisations">
-        <Button
-          variant="ghost"
-          className={cn(
-            'w-full justify-start',
-            pathname?.startsWith('/settings/organisations') && 'bg-secondary',
-          )}
-        >
-          <Users className="mr-2 h-5 w-5" />
-          <Trans>Organisations</Trans>
-        </Button>
-      </Link>
-      */}
 
       <Link to="/settings/security">
         <Button
