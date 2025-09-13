@@ -147,15 +147,15 @@ export default function VerifyEmailPage({ loaderData }: Route.ComponentProps) {
             <p className="text-muted-foreground mt-4">
               <Trans>
                 Your email has been successfully confirmed! You can now use all features of
-                Documenso.
+                Clickesignature.
               </Trans>
             </p>
 
-            <Button className="mt-4" asChild>
-              <Link to="/">
+            {/* <Button className="mt-4" asChild>
+              <Link to="/dashboard">
                 <Trans>Continue</Trans>
               </Link>
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
@@ -174,15 +174,15 @@ export default function VerifyEmailPage({ loaderData }: Route.ComponentProps) {
 
             <p className="text-muted-foreground mt-4">
               <Trans>
-                Your email has already been confirmed. You can now use all features of Documenso.
+                Your email has already been confirmed. You can now use all features of Clickesignature.
               </Trans>
             </p>
 
-            <Button className="mt-4" asChild>
+            {/* <Button className="mt-4" asChild>
               <Link to="/">
                 <Trans>Go back home</Trans>
               </Link>
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

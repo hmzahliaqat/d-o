@@ -27,7 +27,7 @@ const DEFAULT_PRIVACY_POLICY = `
 
 <h2>Introduction</h2>
 <p>
-  Welcome to Documenso. We respect your privacy and are committed to protecting your personal data.
+  Welcome to Clickesignature. We respect your privacy and are committed to protecting your personal data.
   This privacy policy will inform you about how we look after your personal data when you visit our
   website and tell you about your privacy rights and how the law protects you.
 </p>

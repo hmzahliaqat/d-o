@@ -178,10 +178,10 @@ export const DocumentsTableActionDropdown = ({
           <Trans>Download</Trans>
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={onDownloadOriginalClick}>
+        {/* <DropdownMenuItem onClick={onDownloadOriginalClick}>
           <FileDown className="mr-2 h-4 w-4" />
           <Trans>Download Original</Trans>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
 
         <DropdownMenuItem onClick={() => setDuplicateDialogOpen(true)}>
           <Copy className="mr-2 h-4 w-4" />
@@ -210,7 +210,7 @@ export const DocumentsTableActionDropdown = ({
           <Trans>Share</Trans>
         </DropdownMenuLabel>
 
-        {canManageDocument && (
+        {/* {canManageDocument && (
           <DocumentRecipientLinkCopyDialog
             recipients={row.recipients}
             trigger={
@@ -222,7 +222,7 @@ export const DocumentsTableActionDropdown = ({
               </DropdownMenuItem>
             }
           />
-        )}
+        )} */}
 
         <DocumentResendDialog document={row} recipients={nonSignedRecipients} />
 
