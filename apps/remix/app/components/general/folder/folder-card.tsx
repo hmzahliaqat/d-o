@@ -107,17 +107,7 @@ export const FolderCard = ({
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent onClick={(e) => e.stopPropagation()} align="end">
-                  <DropdownMenuItem onClick={() => onMove(folder)}>
-                    <ArrowRightIcon className="mr-2 h-4 w-4" />
-                    <Trans>Move</Trans>
-                  </DropdownMenuItem>
 
-                  <DropdownMenuItem
-                    onClick={() => (folder.pinned ? onUnpin(folder.id) : onPin(folder.id))}
-                  >
-                    <PinIcon className="mr-2 h-4 w-4" />
-                    {folder.pinned ? <Trans>Unpin</Trans> : <Trans>Pin</Trans>}
-                  </DropdownMenuItem>
 
                   <DropdownMenuItem onClick={() => onSettings(folder)}>
                     <SettingsIcon className="mr-2 h-4 w-4" />

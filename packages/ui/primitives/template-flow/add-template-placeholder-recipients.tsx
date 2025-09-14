@@ -356,91 +356,7 @@ export const AddTemplatePlaceholderRecipientsFormPartial = ({
 
         <AnimateGenericFadeInOut motionKey={showAdvancedSettings ? 'Show' : 'Hide'}>
           <Form {...form}>
-            {/* Enable sequential signing checkbox */}
-            <FormField
-              control={form.control}
-              name="signingOrder"
-              render={({ field }) => (
-                <FormItem className="mb-6 flex flex-row items-center space-x-2 space-y-0">
-                  <FormControl>
-                    <Checkbox
-                      {...field}
-                      id="signingOrder"
-                      checked={field.value === DocumentSigningOrder.SEQUENTIAL}
-                      onCheckedChange={(checked) => {
-                        if (
-                          !checked &&
-                          watchedSigners.some((s) => s.role === RecipientRole.ASSISTANT)
-                        ) {
-                          setShowSigningOrderConfirmation(true);
-                          return;
-                        }
 
-                        field.onChange(
-                          checked ? DocumentSigningOrder.SEQUENTIAL : DocumentSigningOrder.PARALLEL,
-                        );
-
-                        // If sequential signing is turned off, disable dictate next signer
-                        if (!checked) {
-                          form.setValue('allowDictateNextSigner', false);
-                        }
-                      }}
-                      disabled={isSubmitting}
-                    />
-                  </FormControl>
-
-                  <FormLabel
-                    htmlFor="signingOrder"
-                    className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    <Trans>Enable signing order</Trans>
-                  </FormLabel>
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="allowDictateNextSigner"
-              render={({ field: { value, ...field } }) => (
-                <FormItem className="mb-6 flex flex-row items-center space-x-2 space-y-0">
-                  <FormControl>
-                    <Checkbox
-                      {...field}
-                      id="allowDictateNextSigner"
-                      checked={value}
-                      onCheckedChange={field.onChange}
-                      disabled={isSubmitting || !isSigningOrderSequential}
-                    />
-                  </FormControl>
-
-                  <div className="flex items-center">
-                    <FormLabel
-                      htmlFor="allowDictateNextSigner"
-                      className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      <Trans>Allow signers to dictate next signer</Trans>
-                    </FormLabel>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span className="text-muted-foreground ml-1 cursor-help">
-                          <HelpCircle className="h-3.5 w-3.5" />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent className="max-w-80 p-4">
-                        <p>
-                          <Trans>
-                            When enabled, signers can choose who should sign next in the sequence
-                            instead of following the predefined order.
-                          </Trans>
-                        </p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
-                </FormItem>
-              )}
-            />
 
             {/* Drag and drop context */}
             <DragDropContext
@@ -525,6 +441,11 @@ export const AddTemplatePlaceholderRecipientsFormPartial = ({
                                   )}
                                 />
                               )}
+
+
+
+
+
 
                               <FormField
                                 control={form.control}

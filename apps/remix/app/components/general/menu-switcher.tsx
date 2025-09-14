@@ -87,14 +87,7 @@ export const MenuSwitcher = () => {
           </DropdownMenuItem>
         )}
 
-        {/* Hide personal inbox for admin users */}
-        {!isUserAdmin && (
-          <DropdownMenuItem className="text-muted-foreground px-4 py-2" asChild>
-            <Link to="/inbox">
-              <Trans>Personal Inbox</Trans>
-            </Link>
-          </DropdownMenuItem>
-        )}
+
 
         <DropdownMenuItem className="text-muted-foreground px-4 py-2" asChild>
           <Link to="/settings/profile">
@@ -102,12 +95,7 @@ export const MenuSwitcher = () => {
           </Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem
-          className="text-muted-foreground px-4 py-2"
-          onClick={() => setLanguageSwitcherOpen(true)}
-        >
-          <Trans>Language</Trans>
-        </DropdownMenuItem>
+
 
         <DropdownMenuItem
           className="text-destructive/90 hover:!text-destructive px-4 py-2"
