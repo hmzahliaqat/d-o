@@ -233,11 +233,11 @@ export default function CompletedSigningPage({ loaderData }: Route.ComponentProp
         <div className="flex flex-col items-center">
 
 
-          {user && (
-            <Link to="/" className="text-documenso-700 hover:text-documenso-600 mt-2">
-              <Trans>Go Back Home</Trans>
-            </Link>
-          )}
+          {/*{user && (*/}
+          {/*  <Link to="/" className="text-documenso-700 hover:text-documenso-600 mt-2">*/}
+          {/*    <Trans>Go Back Home</Trans>*/}
+          {/*  </Link>*/}
+          {/*)}*/}
         </div>
       </div>
 

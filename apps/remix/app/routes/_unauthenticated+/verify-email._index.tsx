@@ -30,11 +30,11 @@ export default function EmailVerificationWithoutTokenPage() {
             </Trans>
           </p>
 
-          <Button className="mt-4" asChild>
-            <Link to="/">
-              <Trans>Go back home</Trans>
-            </Link>
-          </Button>
+          {/*<Button className="mt-4" asChild>*/}
+          {/*  <Link to="/">*/}
+          {/*    <Trans>Go back home</Trans>*/}
+          {/*  </Link>*/}
+          {/*</Button>*/}
         </div>
       </div>
     </div>

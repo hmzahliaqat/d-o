@@ -95,11 +95,11 @@ export default function VerifyEmailPage({ loaderData }: Route.ComponentProps) {
               </Trans>
             </p>
 
-            <Button className="mt-4" asChild>
-              <Link to="/">
-                <Trans>Go back home</Trans>
-              </Link>
-            </Button>
+            {/*<Button className="mt-4" asChild>*/}
+            {/*  <Link to="/">*/}
+            {/*    <Trans>Go back home</Trans>*/}
+            {/*  </Link>*/}
+            {/*</Button>*/}
           </div>
         </div>
       </div>
@@ -123,11 +123,11 @@ export default function VerifyEmailPage({ loaderData }: Route.ComponentProps) {
               </Trans>
             </p>
 
-            <Button className="mt-4" asChild>
-              <Link to="/">
-                <Trans>Go back home</Trans>
-              </Link>
-            </Button>
+            {/*<Button className="mt-4" asChild>*/}
+            {/*  <Link to="/">*/}
+            {/*    <Trans>Go back home</Trans>*/}
+            {/*  </Link>*/}
+            {/*</Button>*/}
           </div>
         </div>
       </div>
