@@ -52,7 +52,7 @@ export default function SupportPage() {
             <h2 className="flex items-center gap-2 text-lg font-bold">
               <BookIcon className="text-muted-foreground h-5 w-5" />
               <Link
-                to="https://docs.documenso.com"
+                to="/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
@@ -61,14 +61,14 @@ export default function SupportPage() {
               </Link>
             </h2>
             <p className="text-muted-foreground mt-1">
-              <Trans>Read our documentation to get started with Documenso.</Trans>
+              <Trans>Read our documentation to get started with Clickesignature.</Trans>
             </p>
           </div>
           <div className="rounded-lg border p-4">
             <h2 className="flex items-center gap-2 text-lg font-bold">
               <Link2Icon className="text-muted-foreground h-5 w-5" />
               <Link
-                to="https://documen.so/discord"
+                to="/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
@@ -80,7 +80,7 @@ export default function SupportPage() {
               <Trans>
                 Join our community on{' '}
                 <Link
-                  to="https://documen.so/discord"
+                  to="/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline"
@@ -91,33 +91,7 @@ export default function SupportPage() {
               </Trans>
             </p>
           </div>
-          {organisation && IS_BILLING_ENABLED() && subscriptionStatus && (
-            <>
-              <div className="rounded-lg border p-4">
-                <h2 className="flex items-center gap-2 text-lg font-bold">
-                  <Link2Icon className="text-muted-foreground h-5 w-5" />
-                  <Trans>Contact us</Trans>
-                </h2>
-                <p className="text-muted-foreground mt-1">
-                  <Trans>We'll get back to you as soon as possible via email.</Trans>
-                </p>
-                <div className="mt-4">
-                  {!showForm ? (
-                    <Button variant="outline" size="sm" onClick={() => setShowForm(true)}>
-                      <Trans>Create a support ticket</Trans>
-                    </Button>
-                  ) : (
-                    <SupportTicketForm
-                      organisationId={organisation.id}
-                      teamId={teamId}
-                      onSuccess={handleSuccess}
-                      onClose={handleCloseForm}
-                    />
-                  )}
-                </div>
-              </div>
-            </>
-          )}
+
         </div>
       </div>
     </div>

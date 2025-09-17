@@ -19,7 +19,7 @@ export type TeamEmailRemovedTemplateProps = {
 
 export const TeamEmailRemovedTemplate = ({
   assetBaseUrl = 'http://localhost:3002',
-  baseUrl = 'https://documenso.com',
+  baseUrl = 'https://clickesignature.com',
   teamEmail = 'example@documenso.com',
   teamName = 'Team Name',
   teamUrl = 'demo',
@@ -27,7 +27,7 @@ export const TeamEmailRemovedTemplate = ({
   const { _ } = useLingui();
   const branding = useBranding();
 
-  const previewText = msg`Team email removed for ${teamName} on Documenso`;
+  const previewText = msg`Team email removed for ${teamName} on clickesignature`;
 
   return (
     <Html>

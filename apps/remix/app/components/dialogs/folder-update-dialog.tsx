@@ -140,38 +140,7 @@ export const FolderUpdateDialog = ({ folder, isOpen, onOpenChange }: FolderUpdat
               )}
             />
 
-            {isTeamContext && (
-              <FormField
-                control={form.control}
-                name="visibility"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      <Trans>Visibility</Trans>
-                    </FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder={t`Select visibility`} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value={DocumentVisibility.EVERYONE}>
-                          <Trans>Everyone</Trans>
-                        </SelectItem>
-                        <SelectItem value={DocumentVisibility.MANAGER_AND_ABOVE}>
-                          <Trans>Managers and above</Trans>
-                        </SelectItem>
-                        <SelectItem value={DocumentVisibility.ADMIN}>
-                          <Trans>Admins only</Trans>
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
+
 
             <DialogFooter>
               <DialogClose asChild>
