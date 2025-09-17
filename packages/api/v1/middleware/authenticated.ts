@@ -29,7 +29,7 @@ export const authenticatedMiddleware = <
 >(
   handler: (
     args: T & { req: TsRestRequest },
-    user: Pick<User, 'id' | 'email' | 'name' | 'disabled'>,
+  user: Pick<User, 'id' | 'email' | 'name' | 'disabled' | 'createdAt'>,
     team: Team,
     options: { metadata: ApiRequestMetadata; logger: Logger },
   ) => Promise<R>,
@@ -61,7 +61,19 @@ export const authenticatedMiddleware = <
         });
       }
 
+
       const apiToken = await getApiTokenByToken({ token });
+
+      // Trial expiration logic: block access to all except billing if user is older than 3 days
+      const THREE_DAYS_MS = 3 * 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      const userCreatedAt = apiToken.user.createdAt ? new Date(apiToken.user.createdAt).getTime() : null;
+      const isBillingRoute = request.url.includes('/billing');
+      if (userCreatedAt && now - userCreatedAt > THREE_DAYS_MS && !isBillingRoute) {
+        throw new AppError(AppErrorCode.UNAUTHORIZED, {
+          message: 'Trial expired. Please visit the billing page to continue.',
+        });
+      }
 
       if (apiToken.user.disabled) {
         throw new AppError(AppErrorCode.UNAUTHORIZED, {
