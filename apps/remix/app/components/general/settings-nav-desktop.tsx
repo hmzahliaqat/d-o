@@ -44,7 +44,7 @@ export const SettingsDesktopNav = ({ className, ...props }: SettingsDesktopNavPr
         </Button>
       </Link>
 
-      {isPersonalLayoutMode && (
+      {/*{isPersonalLayoutMode && (*/}
         <>
           <Link to="/settings/document">
             <Button variant="ghost" className={cn('w-full justify-start')}>
@@ -83,7 +83,7 @@ export const SettingsDesktopNav = ({ className, ...props }: SettingsDesktopNavPr
             </Button>
           </Link>
         </>
-      )}
+      {/*)}*/}
 
 
       <Link to="/settings/security">
