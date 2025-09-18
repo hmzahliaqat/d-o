@@ -34,7 +34,7 @@ export default function UnverifiedAccount() {
 
           <Link
             to="/"
-            className="inline-block rounded-lg bg-green-700  px-4 py-2 text-white font-medium hover:bg-green-600 transition"
+            className="inline-block rounded-lg bg-green-700 mt-3  px-4 py-2 text-white font-medium hover:bg-green-600 transition"
           >
             Proceed to website after verifying your email
           </Link>
