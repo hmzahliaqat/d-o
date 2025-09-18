@@ -5,9 +5,10 @@ import { InboxIcon, MenuIcon, SearchIcon } from 'lucide-react';
 import { Link, useParams } from 'react-router';
 
 import { useSession } from '@documenso/lib/client-only/providers/session';
+import { env } from '@documenso/lib/utils/env';
+import { isAdmin } from '@documenso/lib/utils/is-admin';
 import { isPersonalLayout } from '@documenso/lib/utils/organisations';
 import { getRootHref } from '@documenso/lib/utils/params';
-import { isAdmin } from '@documenso/lib/utils/is-admin';
 import { trpc } from '@documenso/trpc/react';
 import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
@@ -20,18 +21,26 @@ import { AppNavMobile } from './app-nav-mobile';
 import { MenuSwitcher } from './menu-switcher';
 import { OrgMenuSwitcher } from './org-menu-switcher';
 
+// Helper to calculate days left in trial
+function getTrialDaysLeft(createdAt: string | Date | undefined, trialDays = 3) {
+  if (!createdAt) return null;
+  const created = new Date(createdAt).getTime();
+  const now = Date.now();
+  const msInDay = 24 * 60 * 60 * 1000;
+  const daysPassed = Math.floor((now - created) / msInDay);
+  const daysLeft = trialDays - daysPassed;
+  return daysLeft > 0 ? daysLeft : 0;
+}
+
 export type HeaderProps = HTMLAttributes<HTMLDivElement>;
 
 export const Header = ({ className, ...props }: HeaderProps) => {
   const params = useParams();
-
   const { organisations, user } = useSession();
   const isAdminUser = user ? isAdmin(user) : false;
-
   const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-
   const { data: unreadCountData } = trpc.document.inbox.getCount.useQuery(
     {
       readStatus: ReadStatus.NOT_OPENED,
@@ -40,14 +49,15 @@ export const Header = ({ className, ...props }: HeaderProps) => {
       // refetchInterval: 30000, // Refetch every 30 seconds
     },
   );
+  // Calculate trial days left
+  const trialEnabled = env('NEXT_PUBLIC_TRAIL_PERIOD_ENABLED') === 'true';
+  const trialDaysLeft = trialEnabled ? getTrialDaysLeft(user?.createdAt, 3) : null;
 
   useEffect(() => {
     const onScroll = () => {
       setScrollY(window.scrollY);
     };
-
     window.addEventListener('scroll', onScroll);
-
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -86,7 +96,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
         {/*)}*/}
 
         <div className="md:ml-4">
-          {isPersonalLayout(organisations) ? <MenuSwitcher /> : <OrgMenuSwitcher />}
+          {isPersonalLayout(organisations) ? <MenuSwitcher /> : <MenuSwitcher />}
         </div>
 
         <div className="flex flex-row items-center space-x-4 md:hidden">

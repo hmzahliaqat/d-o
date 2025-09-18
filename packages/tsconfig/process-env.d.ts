@@ -83,5 +83,6 @@ declare namespace NodeJS {
     DATABASE_URL?: string;
     POSTGRES_PRISMA_URL?: string;
     POSTGRES_URL_NON_POOLING?: string;
+    NEXT_PUBLIC_TRAIL_PERIOD_ENABLED?: boolean;
   }
 }
