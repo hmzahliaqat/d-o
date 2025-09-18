@@ -33,7 +33,7 @@ export default function UnverifiedAccount() {
           <SendConfirmationEmailForm />
 
           <Link
-            to="/"
+            to="/signin"
             className="inline-block rounded-lg bg-green-700 mt-3  px-4 py-2 text-white font-medium hover:bg-green-600 transition"
           >
             Proceed to website after verifying your email
