@@ -16,7 +16,8 @@ import {
 import { DEFAULT_DOCUMENT_EMAIL_SETTINGS } from '../types/document-email';
 
 export const isPersonalLayout = (organisations: Pick<Organisation, 'type'>[]) => {
-  return organisations.length === 1 && organisations[0].type === 'PERSONAL';
+  const cm = organisations.length === 1 && organisations[0].type === 'PERSONAL';
+  return true;
 };
 
 /**
