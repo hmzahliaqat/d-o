@@ -31,52 +31,52 @@ export default function SettingsLayout() {
   const organisation = useCurrentOrganisation();
 
   const organisationSettingRoutes = [
-    {
-      path: `/o/${organisation.url}/settings/general`,
-      label: t`General`,
-      icon: Building2Icon,
-    },
+    // {
+    //   path: `/o/${organisation.url}/settings/general`,
+    //   label: t`General`,
+    //   icon: Building2Icon,
+    // },
     {
       path: `/o/${organisation.url}/settings/document`,
       label: t`Preferences`,
       icon: Settings2Icon,
       hideHighlight: true,
     },
-    {
-      path: `/o/${organisation.url}/settings/document`,
-      label: t`Document`,
-      isSubNav: true,
-    },
-    {
-      path: `/o/${organisation.url}/settings/branding`,
-      label: t`Branding`,
-      isSubNav: true,
-    },
+    // {
+    //   path: `/o/${organisation.url}/settings/document`,
+    //   label: t`Document`,
+    //   isSubNav: true,
+    // },
+    // {
+    //   path: `/o/${organisation.url}/settings/branding`,
+    //   label: t`Branding`,
+    //   isSubNav: true,
+    // },
     {
       path: `/o/${organisation.url}/settings/email`,
       label: t`Email`,
       isSubNav: true,
     },
-    {
-      path: `/o/${organisation.url}/settings/email-domains`,
-      label: t`Email Domains`,
-      icon: MailboxIcon,
-    },
-    {
-      path: `/o/${organisation.url}/settings/teams`,
-      label: t`Teams`,
-      icon: FaUsers,
-    },
-    {
-      path: `/o/${organisation.url}/settings/members`,
-      label: t`Members`,
-      icon: Users2Icon,
-    },
-    {
-      path: `/o/${organisation.url}/settings/groups`,
-      label: t`Groups`,
-      icon: GroupIcon,
-    },
+    // {
+    //   path: `/o/${organisation.url}/settings/email-domains`,
+    //   label: t`Email Domains`,
+    //   icon: MailboxIcon,
+    // },
+    // {
+    //   path: `/o/${organisation.url}/settings/teams`,
+    //   label: t`Teams`,
+    //   icon: FaUsers,
+    // },
+    // {
+    //   path: `/o/${organisation.url}/settings/members`,
+    //   label: t`Members`,
+    //   icon: Users2Icon,
+    // },
+    // {
+    //   path: `/o/${organisation.url}/settings/groups`,
+    //   label: t`Groups`,
+    //   icon: GroupIcon,
+    // },
     {
       path: `/o/${organisation.url}/settings/billing`,
       label: t`Billing`,
