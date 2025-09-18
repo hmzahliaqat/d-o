@@ -48,7 +48,7 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
         </Button>
       </Link>
 
-      {(
+      {isPersonalLayoutMode && (
         <>
 
 

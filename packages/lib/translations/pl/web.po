@@ -439,10 +439,6 @@ msgstr "<0>Kliknij, aby przesłać</0> lub przeciągnij i upuść"
 msgid "<0>Drawn</0> - A signature that is drawn using a mouse or stylus."
 msgstr "<0>Rysowany</0> – Podpis narysowany za pomocą myszy lub pióra."
 
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-msgid "<0>Email</0> - The recipient will be emailed the document to sign, approve, etc."
-msgstr "<0>Adres e-mail</0> – Odbiorca otrzyma wiadomość z dokumentem do podpisania, zatwierdzenia itp."
-
 #: packages/ui/components/recipient/recipient-action-auth-select.tsx
 msgid "<0>Inherit authentication method</0> - Use the global action signing authentication method configured in the \"General Settings\" step"
 msgstr "<0>Przechwyć metodę uwierzytelniania</0> - Użyj globalnej metody uwierzytelniania podpisywania akcji skonfigurowanej w kroku \"Ustawienia ogólne\""
@@ -458,14 +454,6 @@ msgstr "<0>Brak ograniczeń</0> – Dokument można otworzyć za pomocą adresu 
 #: packages/ui/components/recipient/recipient-action-auth-select.tsx
 msgid "<0>None</0> - No authentication required"
 msgstr "<0>Brak</0> - Uwierzytelnianie nie jest wymagane"
-
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-msgid "<0>None</0> - We will generate links which you can send to the recipients manually."
-msgstr "<0>Brak</0> – Wygenerujemy linki, które możesz wysłać do odbiorców ręcznie."
-
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-msgid "<0>Note</0> - If you use Links in combination with direct templates, you will need to manually send the links to the remaining recipients."
-msgstr "<0>Uwaga</0> – Jeśli używasz linków w połączeniu z bezpośrednimi szablonami, musisz ręcznie wysłać linki do pozostałych odbiorców."
 
 #: packages/ui/components/recipient/recipient-action-auth-select.tsx
 #: packages/ui/components/document/document-global-auth-action-select.tsx
@@ -847,7 +835,6 @@ msgid "Add a document"
 msgstr "Dodaj dokument"
 
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "Add a URL to redirect the user to once the document is signed"
 msgstr "Dodaj adres URL do przekierowania użytkownika po podpisaniu dokumentu"
 
@@ -867,10 +854,6 @@ msgstr "Dodaj autoryzator, aby służył jako dodatkowa metoda uwierzytelniania 
 #: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 msgid "Add an authenticator to serve as a secondary authentication method when signing in, or when signing documents."
 msgstr "Dodaj autoryzator, aby służył jako dodatkowa metoda uwierzytelniania podczas logowania lub podpisywania dokumentów."
-
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-msgid "Add an external ID to the template. This can be used to identify in external systems."
-msgstr "Dodaj identyfikator zewnętrzny szablonu. Może być używany do identyfikacji w zewnętrznych systemach."
 
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/dropdown-field.tsx
 msgid "Add another option"
@@ -1023,14 +1006,6 @@ msgstr "Panel administratora"
 msgid "Admin Panel"
 msgstr "Panel administratora"
 
-#: apps/remix/app/components/dialogs/folder-update-dialog.tsx
-msgid "Admins only"
-msgstr "Tylko dla administratorów"
-
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-msgid "Advanced Options"
-msgstr "Opcje zaawansowane"
-
 #: apps/remix/app/components/embed/authoring/field-advanced-settings-drawer.tsx
 #: packages/ui/primitives/template-flow/add-template-fields.tsx
 #: packages/ui/primitives/document-flow/field-item.tsx
@@ -1123,12 +1098,7 @@ msgstr "Zezwól wszystkim członkom organizacji na dostęp do tego zespołu"
 msgid "Allow document recipients to reply directly to this email address"
 msgstr "Odpowiadanie odbiorcom dokumentu bezpośrednio na ten adres e-mail"
 
-#: packages/ui/primitives/template-flow/add-template-placeholder-recipients.tsx
-msgid "Allow signers to dictate next signer"
-msgstr "Zezwalaj podpisującym wskazać następnego podpisującego"
-
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "Allowed Signature Types"
 msgstr "Dozwolone typy podpisów"
 
@@ -2334,10 +2304,6 @@ msgstr "Utwórz i wyślij"
 msgid "Create as draft"
 msgstr "Utwórz jako szkic"
 
-#: apps/remix/app/components/dialogs/template-use-dialog.tsx
-msgid "Create as pending"
-msgstr "Utwórz jako oczekujące"
-
 #: apps/remix/app/components/dialogs/claim-create-dialog.tsx
 msgid "Create claim"
 msgstr "Utwórz roszczenie"
@@ -2429,10 +2395,6 @@ msgstr "Utwórz zespół"
 #: apps/remix/app/components/dialogs/team-create-dialog.tsx
 msgid "Create Team"
 msgstr "Utwórz zespół"
-
-#: apps/remix/app/components/dialogs/template-use-dialog.tsx
-msgid "Create the document as pending and ready to sign."
-msgstr "Utwórz dokument jako oczekujący i gotowy do podpisania."
 
 #: apps/remix/app/components/forms/token.tsx
 #: apps/remix/app/components/forms/token.tsx
@@ -2542,7 +2504,6 @@ msgstr "Panel sterowania"
 
 #: apps/remix/app/components/tables/settings-security-activity-table.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-date-field.tsx
-#: packages/ui/primitives/template-flow/add-template-fields.tsx
 #: packages/ui/primitives/document-flow/types.ts
 msgid "Date"
 msgstr "Data"
@@ -2552,7 +2513,6 @@ msgid "Date created"
 msgstr "Data utworzenia"
 
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "Date Format"
 msgstr "Format daty"
 
@@ -2756,7 +2716,6 @@ msgstr "Urządzenie"
 msgid "Didn't request a password change? We are here to help you secure your account, just <0>contact us.</0>"
 msgstr "Nie prosiłeś o zmianę hasła? Jesteśmy tutaj, aby pomóc Ci zabezpieczyć swoje konto, po prostu <0>skontaktuj się z nami.</0>"
 
-#: apps/remix/app/components/tables/templates-table.tsx
 #: apps/remix/app/components/general/template/template-direct-link-badge.tsx
 msgid "direct link"
 msgstr "bezpośredni link"
@@ -2789,10 +2748,6 @@ msgstr "Podpisywanie bezpośrednim linkiem zostało wyłączone"
 #: apps/remix/app/components/dialogs/template-direct-link-dialog.tsx
 msgid "Direct link signing has been enabled"
 msgstr "Podpisywanie za pomocą linku bezpośredniego zostało włączone"
-
-#: apps/remix/app/components/tables/templates-table.tsx
-msgid "Direct link templates contain one dynamic recipient placeholder. Anyone with access to this link can sign the document, and it will then appear on your documents page."
-msgstr "Szablony linków bezpośrednich zawierają jedno dynamiczne miejsce odbiorcy. Każdy, kto ma dostęp do tego linku, może podpisać dokument, a następnie pojawi się on na stronie twoich dokumentów."
 
 #: apps/remix/app/components/dialogs/template-direct-link-dialog.tsx
 msgid "Direct template link deleted"
@@ -2912,7 +2867,6 @@ msgstr "Dokument \"{0}\" - Odrzucenie potwierdzone"
 msgid "Document \"{0}\" Cancelled"
 msgstr "Dokument \"{0}\" anulowany"
 
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 #: packages/ui/components/document/document-global-auth-access-select.tsx
 msgid "Document access"
 msgstr "Dostęp do dokumentu"
@@ -3016,11 +2970,6 @@ msgstr "Wiadomość o usunięciu dokumentu"
 #: packages/lib/server-only/document/send-delete-email.ts
 msgid "Document Deleted!"
 msgstr "Dokument usunięty!"
-
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-msgid "Document Distribution Method"
-msgstr "Metoda dystrybucji dokumentu"
 
 #: apps/remix/app/components/general/document/document-status.tsx
 msgid "Document draft"
@@ -3316,10 +3265,6 @@ msgstr ""
 msgid "Drop your document here"
 msgstr "Upuść swój dokument tutaj"
 
-#: packages/ui/primitives/template-flow/add-template-fields.tsx
-msgid "Dropdown"
-msgstr "Lista rozwijana"
-
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/dropdown-field.tsx
 msgid "Dropdown options"
 msgstr "Opcje rozwijane"
@@ -3403,7 +3348,6 @@ msgstr "Ujawnienie podpisu elektronicznego"
 #: apps/remix/app/components/dialogs/assistant-confirmation-dialog.tsx
 #: packages/ui/primitives/template-flow/add-template-placeholder-recipients.tsx
 #: packages/ui/primitives/template-flow/add-template-placeholder-recipients.tsx
-#: packages/ui/primitives/template-flow/add-template-fields.tsx
 #: packages/ui/primitives/document-flow/types.ts
 #: packages/ui/primitives/document-flow/add-signers.tsx
 #: packages/ui/primitives/document-flow/add-signers.tsx
@@ -3460,10 +3404,6 @@ msgstr "Domeny"
 msgid "Email domains synced"
 msgstr "Domeny zostały zsynchronizowane"
 
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-msgid "Email Options"
-msgstr "Opcje adresu e-mail"
-
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.email.tsx
 #: apps/remix/app/components/general/settings-nav-mobile.tsx
@@ -3479,7 +3419,6 @@ msgstr "Preferencje e-mail zaktualizowane"
 msgid "Email resent"
 msgstr "Wysłano ponownie wiadomość"
 
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Email Sender"
 msgstr "Adres e-mail nadawcy"
@@ -3589,10 +3528,6 @@ msgstr "Włącz niestandardowe brandowanie dla wszystkich dokumentów w tym zesp
 #: packages/lib/constants/template.ts
 msgid "Enable Direct Link Signing"
 msgstr "Włącz podpisywanie linku bezpośredniego"
-
-#: packages/ui/primitives/template-flow/add-template-placeholder-recipients.tsx
-msgid "Enable signing order"
-msgstr "Włącz kolejność podpisów"
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks.$id.tsx
@@ -3740,10 +3675,6 @@ msgstr "Błąd przesyłania pliku"
 msgid "Event Type"
 msgstr "Rodzaj zdarzenia"
 
-#: apps/remix/app/components/dialogs/folder-update-dialog.tsx
-msgid "Everyone"
-msgstr "Wszyscy"
-
 #: apps/remix/app/components/forms/document-preferences-form.tsx
 msgid "Everyone can access and view the document"
 msgstr "Każdy może uzyskać dostęp do dokumentu i go wyświetlić"
@@ -3768,10 +3699,6 @@ msgstr "Wygasł"
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.tokens.tsx
 msgid "Expires on {0}"
 msgstr "Wygasa {0}"
-
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-msgid "External ID"
-msgstr "Identyfikator zewnętrzny"
 
 #: apps/remix/app/components/dialogs/folder-create-dialog.tsx
 msgid "Failed to create folder"
@@ -4037,14 +3964,7 @@ msgstr "Wróć"
 msgid "Go Back"
 msgstr "Wróć"
 
-#: apps/remix/app/routes/_unauthenticated+/verify-email._index.tsx
-#: apps/remix/app/routes/_unauthenticated+/verify-email.$token.tsx
-#: apps/remix/app/routes/_unauthenticated+/verify-email.$token.tsx
-msgid "Go back home"
-msgstr "Wróć do domu"
-
 #: apps/remix/app/routes/_recipient+/sign.$token+/_index.tsx
-#: apps/remix/app/routes/_recipient+/sign.$token+/complete.tsx
 msgid "Go Back Home"
 msgstr "Wróć do domu"
 
@@ -4454,9 +4374,7 @@ msgid "Label"
 msgstr "Etykieta"
 
 #: apps/remix/app/components/general/org-menu-switcher.tsx
-#: apps/remix/app/components/general/menu-switcher.tsx
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "Language"
 msgstr "Język"
 
@@ -4722,10 +4640,6 @@ msgstr "Zarządzaj ustawieniami swojej witryny tutaj"
 msgid "Manager"
 msgstr "Menedżer"
 
-#: apps/remix/app/components/dialogs/folder-update-dialog.tsx
-msgid "Managers and above"
-msgstr "Managerowie i wyżej"
-
 #: apps/remix/app/components/general/document-signing/document-signing-complete-dialog.tsx
 msgid "Mark as viewed"
 msgstr "Oznaczono jako obejrzane"
@@ -4785,7 +4699,6 @@ msgid "Members"
 msgstr "Członkowie"
 
 #: apps/remix/app/components/forms/support-ticket-form.tsx
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "Message"
 msgstr "Wiadomość"
 
@@ -4823,7 +4736,6 @@ msgstr "Miesięczni aktywni użytkownicy: Użytkownicy, którzy mieli przynajmni
 msgid "Most Popular"
 msgstr ""
 
-#: apps/remix/app/components/general/folder/folder-card.tsx
 #: apps/remix/app/components/dialogs/template-move-to-folder-dialog.tsx
 #: apps/remix/app/components/dialogs/folder-move-dialog.tsx
 #: apps/remix/app/components/dialogs/document-move-to-folder-dialog.tsx
@@ -4887,7 +4799,6 @@ msgstr "Nie dotyczy"
 #: apps/remix/app/components/dialogs/assistant-confirmation-dialog.tsx
 #: packages/ui/primitives/template-flow/add-template-placeholder-recipients.tsx
 #: packages/ui/primitives/template-flow/add-template-placeholder-recipients.tsx
-#: packages/ui/primitives/template-flow/add-template-fields.tsx
 #: packages/ui/primitives/document-flow/types.ts
 #: packages/ui/primitives/document-flow/add-signers.tsx
 #: packages/ui/primitives/document-flow/add-signers.tsx
@@ -5046,7 +4957,6 @@ msgid "Nothing to do"
 msgstr "Nic do zrobienia"
 
 #: apps/remix/app/components/general/document-signing/document-signing-number-field.tsx
-#: packages/ui/primitives/template-flow/add-template-fields.tsx
 #: packages/ui/primitives/document-flow/types.ts
 msgid "Number"
 msgstr "Numer"
@@ -5281,10 +5191,6 @@ msgstr "Zorganizuj swoje szablony"
 msgid "Organize your documents and templates"
 msgstr "Organizuj swoje dokumenty i szablony"
 
-#: apps/remix/app/components/dialogs/template-use-dialog.tsx
-msgid "Otherwise, the document will be created as a draft."
-msgstr "W przeciwnym razie dokument zostanie utworzony jako wersja robocza."
-
 #: apps/remix/app/components/forms/email-preferences-form.tsx
 msgid "Override organisation settings"
 msgstr "Nadpisz ustawienia organizacji"
@@ -5450,7 +5356,6 @@ msgstr "Konto osobiste"
 
 #: apps/remix/app/routes/_authenticated+/inbox.tsx
 #: apps/remix/app/components/general/org-menu-switcher.tsx
-#: apps/remix/app/components/general/menu-switcher.tsx
 msgid "Personal Inbox"
 msgstr "Skrzynka odbiorcza osobista"
 
@@ -5465,10 +5370,6 @@ msgstr "Wybierz hasło"
 #: apps/remix/app/components/general/user-profile-timur.tsx
 msgid "Pick any of the following agreements below and start signing to get started"
 msgstr "Wybierz umowę i zacznij podpisywanie"
-
-#: apps/remix/app/components/general/folder/folder-card.tsx
-msgid "Pin"
-msgstr "Przypnij"
 
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/text-field.tsx
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/number-field.tsx
@@ -5665,14 +5566,9 @@ msgstr ""
 msgid "Privacy Policy Updated"
 msgstr ""
 
-#: apps/remix/app/components/tables/templates-table.tsx
 #: apps/remix/app/components/general/template/template-type.tsx
 msgid "Private"
 msgstr "Prywatne"
-
-#: apps/remix/app/components/tables/templates-table.tsx
-msgid "Private templates can only be modified and viewed by you."
-msgstr "Prywatne szablony mogą być modyfikowane i przeglądane tylko przez Ciebie."
 
 #: apps/remix/app/components/dialogs/assistant-confirmation-dialog.tsx
 msgid "Proceed"
@@ -5706,7 +5602,6 @@ msgstr "Profil zaktualizowano"
 msgid "Progress"
 msgstr "Postęp"
 
-#: apps/remix/app/components/tables/templates-table.tsx
 #: apps/remix/app/components/general/template/template-type.tsx
 msgid "Public"
 msgstr "Publiczny"
@@ -5719,10 +5614,6 @@ msgstr "Profil publiczny"
 #: apps/remix/app/components/forms/public-profile-form.tsx
 msgid "Public profile URL"
 msgstr "Adres URL profilu publicznego"
-
-#: apps/remix/app/components/tables/templates-table.tsx
-msgid "Public templates are connected to your public profile. Any modifications to public templates will also appear in your public profile."
-msgstr "Szablony publiczne są powiązane z Twoim publicznym profilem. Wszelkie modyfikacje szablonów publicznych również pojawią się w Twoim publicznym profilu."
 
 #: packages/ui/primitives/document-flow/types.ts
 msgid "Radio"
@@ -5793,7 +5684,6 @@ msgstr "Ostatnie dokumenty"
 msgid "Recipient"
 msgstr "Odbiorca"
 
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 #: packages/ui/primitives/document-flow/add-settings.tsx
 #: packages/ui/components/recipient/recipient-action-auth-select.tsx
 msgid "Recipient action authentication"
@@ -5855,7 +5745,6 @@ msgid "Red"
 msgstr "Czerwony"
 
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "Redirect URL"
 msgstr "Adres URL przekierowania"
 
@@ -5960,10 +5849,6 @@ msgstr "Usuń użytkownika"
 #: apps/remix/app/components/forms/password.tsx
 msgid "Repeat Password"
 msgstr "Potwierdź hasło"
-
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-msgid "Reply To Email"
-msgstr "Odpowiedz na adres"
 
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/text-field.tsx
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/radio-field.tsx
@@ -6301,10 +6186,6 @@ msgstr "Wybierz członków do włączenia do tej grupy"
 msgid "Select triggers"
 msgstr "Wybierz wyzwalacze"
 
-#: apps/remix/app/components/dialogs/folder-update-dialog.tsx
-msgid "Select visibility"
-msgstr "Wybierz widoczność"
-
 #: packages/ui/primitives/document-flow/send-document-action-dialog.tsx
 #: packages/ui/primitives/document-flow/send-document-action-dialog.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
@@ -6320,10 +6201,6 @@ msgstr "Wyślij testowy webhook z danymi próbnymi, aby zweryfikować poprawnoś
 #: apps/remix/app/components/forms/send-confirmation-email.tsx
 msgid "Send confirmation email"
 msgstr "Wyślij e-mail potwierdzający"
-
-#: apps/remix/app/components/dialogs/template-use-dialog.tsx
-msgid "Send document"
-msgstr "Wyślij dokument"
 
 #: packages/ui/primitives/document-flow/send-document-action-dialog.tsx
 msgid "Send Document"
@@ -6832,7 +6709,6 @@ msgid "Subject"
 msgstr "Temat"
 
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "Subject <0>(Optional)</0>"
 msgstr "Temat <0>(opcjonalnie)</0>"
 
@@ -7079,14 +6955,6 @@ msgstr "Nazwa zespołu"
 msgid "Team not found"
 msgstr "Nie znaleziono zespołu"
 
-#: apps/remix/app/components/tables/templates-table.tsx
-msgid "Team Only"
-msgstr "Tylko dla zespołu"
-
-#: apps/remix/app/components/tables/templates-table.tsx
-msgid "Team only templates are not linked anywhere and are visible only to your team."
-msgstr "Szablony tylko dla zespołu nie są nigdzie linkowane i są widoczne tylko dla Twojego zespołu."
-
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.groups.$id.tsx
 #: apps/remix/app/components/dialogs/team-member-create-dialog.tsx
 #: apps/remix/app/components/dialogs/team-group-create-dialog.tsx
@@ -7211,7 +7079,6 @@ msgstr "Testowy webhook wysłany"
 
 #: apps/remix/app/components/general/document-signing/document-signing-text-field.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-text-field.tsx
-#: packages/ui/primitives/template-flow/add-template-fields.tsx
 #: packages/ui/primitives/document-flow/types.ts
 msgid "Text"
 msgstr "Tekst"
@@ -7316,10 +7183,6 @@ msgstr "Dokument został utworzony, ale nie mógł zostać wysłany do odbiorcó
 #: apps/remix/app/components/dialogs/document-delete-dialog.tsx
 msgid "The document will be hidden from your account"
 msgstr "Dokument zostanie ukryty w Twoim koncie"
-
-#: apps/remix/app/components/dialogs/template-use-dialog.tsx
-msgid "The document will be immediately sent to recipients if this is checked."
-msgstr "Dokument zostanie natychmiast wysłany do odbiorców, jeśli to zostanie zaznaczone."
 
 #: packages/ui/components/document/document-send-email-message-helper.tsx
 msgid "The document's name"
@@ -7693,10 +7556,6 @@ msgstr "To pole nie może być modyfikowane ani usuwane. Po udostępnieniu bezpo
 msgid "This folder contains multiple items. Deleting it will remove all subfolders and move all nested documents and templates to the root folder."
 msgstr "Ten folder zawiera wiele elementów. Usunięcie go spowoduje usunięcie wszystkich podfolderów i przeniesienie wszystkich zagnieżdżonych dokumentów oraz szablonów do folderu głównego."
 
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
-msgid "This is how the document will reach the recipients once the document is ready for signing."
-msgstr "W ten sposób dokument dotrze do odbiorców, gdy tylko dokument będzie gotowy do podpisania."
-
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
 msgid "This is the claim that this organisation was initially created with. Any feature flag changes to this claim will be backported into this organisation."
 msgstr "To jest roszczenie, z którym pierwotnie została utworzona ta organizacja. Wszelkie zmiany flag funkcji w tym roszczeniu zostaną przeniesione do tej organizacji."
@@ -7792,7 +7651,6 @@ msgid "Time zone"
 msgstr "Strefa czasowa"
 
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
-#: packages/ui/primitives/template-flow/add-template-settings.tsx
 msgid "Time Zone"
 msgstr "Strefa czasowa"
 
@@ -8099,10 +7957,6 @@ msgstr "Nieograniczone dokumenty, API i więcej"
 msgid "Unlimited teams"
 msgstr ""
 
-#: apps/remix/app/components/general/folder/folder-card.tsx
-msgid "Unpin"
-msgstr "Odepnij"
-
 #: apps/remix/app/components/dialogs/team-group-create-dialog.tsx
 msgid "Untitled Group"
 msgstr "Grupa bez nazwy"
@@ -8258,10 +8112,6 @@ msgstr ""
 msgid "Upload a CSV file to create multiple documents from this template. Each row represents one document with its recipient details."
 msgstr "Prześlij plik CSV, aby utworzyć wiele dokumentów z tego szablonu. Każda linia reprezentuje jeden dokument z jego szczegółami odbiorcy."
 
-#: apps/remix/app/components/dialogs/template-use-dialog.tsx
-msgid "Upload a custom document to use instead of the template's default document"
-msgstr "Prześlij niestandardowy dokument do użycia zamiast domyślnego dokumentu szablonu"
-
 #: apps/remix/app/components/dialogs/template-bulk-send-dialog.tsx
 msgid "Upload and Process"
 msgstr "Prześlij i przetwórz"
@@ -8273,10 +8123,6 @@ msgstr "Prześlij awatar"
 #: apps/remix/app/components/dialogs/template-bulk-send-dialog.tsx
 msgid "Upload CSV"
 msgstr "Prześlij CSV"
-
-#: apps/remix/app/components/dialogs/template-use-dialog.tsx
-msgid "Upload custom document"
-msgstr "Prześlij niestandardowy dokument"
 
 #: apps/remix/app/components/general/document/document-drop-zone-wrapper.tsx
 #: apps/remix/app/components/embed/authoring/configure-document-upload.tsx
@@ -8587,10 +8433,6 @@ msgctxt "Recipient role progressive verb"
 msgid "Viewing"
 msgstr ""
 
-#: apps/remix/app/components/dialogs/folder-update-dialog.tsx
-msgid "Visibility"
-msgstr "Widoczność"
-
 #: apps/remix/app/components/general/stack-avatars-with-tooltip.tsx
 msgid "Waiting"
 msgstr "Czekam"
@@ -8896,12 +8738,10 @@ msgstr "Nie udało się zweryfikować Twojego e-maila w tym momencie."
 msgid "We were unable to verify your email. If your email is not verified already, please try again."
 msgstr "Nie udało się zweryfikować twojego e-maila. Jeśli twój e-mail nie jest jeszcze zweryfikowany, spróbuj ponownie."
 
-#: apps/remix/app/components/dialogs/template-use-dialog.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "We will generate signing links for you, which you can send to the recipients through your method of choice."
 msgstr "Wygenerujemy dla Ciebie linki do podpisania, które możesz wysłać do odbiorców za pomocą wybranej metody."
 
-#: apps/remix/app/components/dialogs/template-use-dialog.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "We won't send anything to notify recipients."
 msgstr "Nie wyślemy nic, aby powiadomić odbiorców."
@@ -8976,10 +8816,6 @@ msgstr "Czy próbowałeś raczej edytować ten dokument?"
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
 msgid "What you can do with teams:"
 msgstr "Co możesz zrobić z zespołami:"
-
-#: packages/ui/primitives/template-flow/add-template-placeholder-recipients.tsx
-msgid "When enabled, signers can choose who should sign next in the sequence instead of following the predefined order."
-msgstr "Kiedy włączone, sygnatariusze mogą wybrać, kto ma podpisać następny w kolejności zamiast podążać za zdefiniowanym porządkiem."
 
 #: apps/remix/app/components/dialogs/passkey-create-dialog.tsx
 msgid "When you click continue, you will be prompted to add the first available authenticator on your system."
