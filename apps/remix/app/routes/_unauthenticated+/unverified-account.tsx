@@ -1,5 +1,6 @@
 import { Trans } from '@lingui/react/macro';
 import { Mails } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 import { SendConfirmationEmailForm } from '~/components/forms/send-confirmation-email';
 
@@ -30,6 +31,14 @@ export default function UnverifiedAccount() {
           </p>
 
           <SendConfirmationEmailForm />
+
+          <Link
+            to="/"
+            className="inline-block rounded-lg bg-green-700  px-4 py-2 text-white font-medium hover:bg-green-600 transition"
+          >
+            Proceed to website after verifying your email
+          </Link>
+
         </div>
       </div>
     </div>
