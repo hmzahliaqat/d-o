@@ -114,7 +114,8 @@ export const DocumentPreferencesForm = ({
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       documentDateFormat: settings.documentDateFormat as TDocumentMetaDateFormat | null,
       includeSenderDetails: settings.includeSenderDetails,
-      includeSigningCertificate: settings.includeSigningCertificate,
+      // includeSigningCertificate: settings.includeSigningCertificate,
+      includeSigningCertificate: false,
       includeAuditLog: settings.includeAuditLog,
       signatureTypes: extractTeamSignatureSettings({ ...settings }),
     },
@@ -412,38 +413,39 @@ export const DocumentPreferencesForm = ({
                   <Trans>Include the Signing Certificate in the Document</Trans>
                 </FormLabel>
 
-                <FormControl>
-                  <Select
-                    {...field}
-                    value={field.value === null ? '-1' : field.value.toString()}
-                    onValueChange={(value) =>
-                      field.onChange(value === 'true' ? true : value === 'false' ? false : null)
-                    }
-                  >
-                    <SelectTrigger
-                      className="bg-background text-muted-foreground"
-                      data-testid="include-signing-certificate-trigger"
-                    >
-                      <SelectValue />
-                    </SelectTrigger>
+                {/*<FormControl>*/}
+                {/*  <Select*/}
+                {/*    {...field}*/}
+                {/*    value={field.value === null ? '-1' : field.value.toString()}*/}
+                {/*    onValueChange={(value) =>*/}
+                {/*      field.onChange(value === 'true' ? true : value === 'false' ? false : null)*/}
 
-                    <SelectContent>
-                      <SelectItem value="true">
-                        <Trans>Yes</Trans>
-                      </SelectItem>
+                {/*  }*/}
+                {/*  >*/}
+                {/*    <SelectTrigger*/}
+                {/*      className="bg-background text-muted-foreground"*/}
+                {/*      data-testid="include-signing-certificate-trigger"*/}
+                {/*    >*/}
+                {/*      <SelectValue />*/}
+                {/*    </SelectTrigger>*/}
 
-                      <SelectItem value="false">
-                        <Trans>No</Trans>
-                      </SelectItem>
+                {/*    <SelectContent>*/}
+                {/*      <SelectItem value="true">*/}
+                {/*        <Trans>Yes</Trans>*/}
+                {/*      </SelectItem>*/}
 
-                      {canInherit && (
-                        <SelectItem value={'-1'}>
-                          <Trans>Inherit from organisation</Trans>
-                        </SelectItem>
-                      )}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
+                {/*      <SelectItem value="false">*/}
+                {/*        <Trans>No</Trans>*/}
+                {/*      </SelectItem>*/}
+
+                {/*      {canInherit && (*/}
+                {/*        <SelectItem value={'-1'}>*/}
+                {/*          <Trans>Inherit from organisation</Trans>*/}
+                {/*        </SelectItem>*/}
+                {/*      )}*/}
+                {/*    </SelectContent>*/}
+                {/*  </Select>*/}
+                {/*</FormControl>*/}
 
                 <FormDescription>
                   <Trans>
