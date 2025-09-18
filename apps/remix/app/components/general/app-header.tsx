@@ -55,6 +55,8 @@ export const Header = ({ className, ...props }: HeaderProps) => {
 
   useEffect(() => {
     const onScroll = () => {
+      console.log(user);
+
       setScrollY(window.scrollY);
     };
     window.addEventListener('scroll', onScroll);

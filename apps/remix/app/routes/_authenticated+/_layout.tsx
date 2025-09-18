@@ -46,6 +46,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 
 
 export default function Layout({ loaderData, params }: Route.ComponentProps) {
+
   const { banner } = loaderData;
   const { user, organisations } = useSession();
   const location = useLocation();
@@ -67,6 +68,9 @@ export default function Layout({ loaderData, params }: Route.ComponentProps) {
   const orgNotFound = params.orgUrl && !currentOrganisation;
   const teamNotFound = params.teamUrl && !currentTeam;
 
+  // Check if organisation has an active subscription
+  const hasActiveSubscription = currentOrganisation?.subscription?.status === 'ACTIVE';
+
   // --- Trial Expiry Frontend Guard ---
   const trialEnabled = env('NEXT_PUBLIC_TRAIL_PERIOD_ENABLED') === 'true';
   function isTrialExpired(createdAt: string | Date | undefined, trialDays = 3) {
@@ -76,7 +80,17 @@ export default function Layout({ loaderData, params }: Route.ComponentProps) {
     const msInDay = 24 * 60 * 60 * 1000;
     return now - created > trialDays * msInDay;
   }
+  function getTrialDaysLeft(createdAt: string | Date | undefined, trialDays = 3) {
+    if (!createdAt) return null;
+    const created = new Date(createdAt).getTime();
+    const now = Date.now();
+    const msInDay = 24 * 60 * 60 * 1000;
+    const daysPassed = Math.floor((now - created) / msInDay);
+    const daysLeft = trialDays - daysPassed;
+    return daysLeft > 0 ? daysLeft : 0;
+  }
   const trialExpired = trialEnabled ? isTrialExpired(user?.createdAt, 3) : false;
+  const trialDaysLeft = trialEnabled ? getTrialDaysLeft(user?.createdAt, 3) : null;
   const isBillingRoute = location.pathname.includes('/settings/billing');
 
   useEffect(() => {
@@ -84,6 +98,7 @@ export default function Layout({ loaderData, params }: Route.ComponentProps) {
       navigate('/settings/billing', { replace: true });
     }
   }, [trialEnabled, trialExpired, isBillingRoute, navigate]);
+
 
   const trialBanner = trialEnabled && trialExpired ? (
     <div style={{ background: '#fef3c7', color: '#92400e' }} className="w-full text-center py-2 text-sm font-medium z-[100] flex flex-col items-center gap-1">
@@ -97,7 +112,19 @@ export default function Layout({ loaderData, params }: Route.ComponentProps) {
     </div>
   ) : null;
 
-  if (trialEnabled && trialExpired && !isBillingRoute) {
+  const trialDaysLeftBanner = trialEnabled && !trialExpired && typeof trialDaysLeft === 'number' && trialDaysLeft > 0 ? (
+    <div style={{ background: '#fef3c7', color: '#92400e' }} className="w-full text-center py-2 text-sm font-medium z-[100] flex flex-col items-center gap-1">
+      <span>Your free trial ends in {trialDaysLeft} day{trialDaysLeft === 1 ? '' : 's'}. Upgrade now to keep using the application.</span>
+      <Link
+        to="/settings/billing"
+        className="inline-block mt-1 px-3 py-1 rounded bg-yellow-300 text-yellow-900 font-semibold hover:bg-yellow-400 transition-colors text-xs border border-yellow-400"
+      >
+        Upgrade Now
+      </Link>
+    </div>
+  ) : null;
+
+  if (!hasActiveSubscription && trialEnabled && trialExpired && !isBillingRoute) {
     return (
       <>{trialBanner}</>
     );
@@ -136,7 +163,8 @@ export default function Layout({ loaderData, params }: Route.ComponentProps) {
   return (
     <OrganisationProvider organisation={currentOrganisation}>
       <TeamProvider team={currentTeam || null}>
-        {trialBanner}
+        {!hasActiveSubscription && trialDaysLeftBanner}
+        {!hasActiveSubscription && trialBanner}
         <OrganisationBillingBanner />
         {!user.emailVerified && <VerifyEmailBanner email={user.email} />}
         {banner && <AppBanner banner={banner} />}
