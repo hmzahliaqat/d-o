@@ -198,7 +198,464 @@ export const AddTemplateSettingsFormPartial = ({
               )}
             />
 
+            <FormField
+              control={form.control}
+              name="meta.language"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="inline-flex items-center">
+                    <Trans>Language</Trans>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <InfoIcon className="mx-2 h-4 w-4" />
+                      </TooltipTrigger>
 
+                      <TooltipContent className="text-foreground max-w-md space-y-2 p-4">
+                        Controls the language for the document, including the language to be used
+                        for email notifications, and the final certificate that is generated and
+                        attached to the document.
+                      </TooltipContent>
+                    </Tooltip>
+                  </FormLabel>
+
+                  <FormControl>
+                    <Select {...field} onValueChange={field.onChange}>
+                      <SelectTrigger className="bg-background">
+                        <SelectValue />
+                      </SelectTrigger>
+
+                      <SelectContent>
+                        {Object.entries(SUPPORTED_LANGUAGES).map(([code, language]) => (
+                          <SelectItem key={code} value={code}>
+                            {language.full}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="globalAccessAuth"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex flex-row items-center">
+                    <Trans>Document access</Trans>
+                    <DocumentGlobalAuthAccessTooltip />
+                  </FormLabel>
+
+                  <FormControl>
+                    <DocumentGlobalAuthAccessSelect
+                      value={field.value}
+                      disabled={field.disabled}
+                      onValueChange={field.onChange}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {currentTeamMemberRole && (
+              <FormField
+                control={form.control}
+                name="visibility"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex flex-row items-center">
+                      Document visibility
+                      <DocumentVisibilityTooltip />
+                    </FormLabel>
+
+                    <FormControl>
+                      <DocumentVisibilitySelect
+                        canUpdateVisibility={canUpdateVisibility}
+                        currentTeamMemberRole={currentTeamMemberRole}
+                        {...field}
+                        onValueChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            )}
+
+            <FormField
+              control={form.control}
+              name="meta.distributionMethod"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex flex-row items-center">
+                    <Trans>Document Distribution Method</Trans>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <InfoIcon className="mx-2 h-4 w-4" />
+                      </TooltipTrigger>
+
+                      <TooltipContent className="text-foreground max-w-md space-y-2 p-4">
+                        <h2>
+                          <strong>
+                            <Trans>Document Distribution Method</Trans>
+                          </strong>
+                        </h2>
+
+                        <p>
+                          <Trans>
+                            This is how the document will reach the recipients once the document is
+                            ready for signing.
+                          </Trans>
+                        </p>
+
+                        <ul className="ml-3.5 list-outside list-disc space-y-0.5 py-2">
+                          <li>
+                            <Trans>
+                              <strong>Email</strong> - The recipient will be emailed the document to
+                              sign, approve, etc.
+                            </Trans>
+                          </li>
+                          <li>
+                            <Trans>
+                              <strong>None</strong> - We will generate links which you can send to
+                              the recipients manually.
+                            </Trans>
+                          </li>
+                        </ul>
+
+                        <Trans>
+                          <strong>Note</strong> - If you use Links in combination with direct
+                          templates, you will need to manually send the links to the remaining
+                          recipients.
+                        </Trans>
+                      </TooltipContent>
+                    </Tooltip>
+                  </FormLabel>
+
+                  <FormControl>
+                    <Select {...field} onValueChange={field.onChange}>
+                      <SelectTrigger className="bg-background text-muted-foreground">
+                        <SelectValue data-testid="documentDistributionMethodSelectValue" />
+                      </SelectTrigger>
+
+                      <SelectContent position="popper">
+                        {Object.values(DOCUMENT_DISTRIBUTION_METHODS).map(
+                          ({ value, description }) => (
+                            <SelectItem key={value} value={value}>
+                              {i18n._(description)}
+                            </SelectItem>
+                          ),
+                        )}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="meta.signatureTypes"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex flex-row items-center">
+                    <Trans>Allowed Signature Types</Trans>
+                    <DocumentSignatureSettingsTooltip />
+                  </FormLabel>
+
+                  <FormControl>
+                    <MultiSelectCombobox
+                      options={Object.values(DOCUMENT_SIGNATURE_TYPES).map((option) => ({
+                        label: t(option.label),
+                        value: option.value,
+                      }))}
+                      selectedValues={field.value}
+                      onChange={field.onChange}
+                      className="bg-background w-full"
+                      emptySelectionPlaceholder="Select signature types"
+                    />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {organisation.organisationClaim.flags.cfr21 && (
+              <FormField
+                control={form.control}
+                name="globalActionAuth"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex flex-row items-center">
+                      <Trans>Recipient action authentication</Trans>
+                      <DocumentGlobalAuthActionTooltip />
+                    </FormLabel>
+
+                    <FormControl>
+                      <DocumentGlobalAuthActionSelect
+                        value={field.value}
+                        disabled={field.disabled}
+                        onValueChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            )}
+
+            {distributionMethod === DocumentDistributionMethod.EMAIL && (
+              <Accordion type="multiple">
+                <AccordionItem value="email-options" className="border-none">
+                  <AccordionTrigger className="text-foreground rounded border px-3 py-2 text-left hover:bg-neutral-200/30 hover:no-underline">
+                    <Trans>Email Options</Trans>
+                  </AccordionTrigger>
+
+                  <AccordionContent className="text-muted-foreground -mx-1 px-1 pt-4 text-sm leading-relaxed [&>div]:pb-0">
+                    <div className="flex flex-col space-y-6">
+                      {organisation.organisationClaim.flags.emailDomains && (
+                        <FormField
+                          control={form.control}
+                          name="meta.emailId"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>
+                                <Trans>Email Sender</Trans>
+                              </FormLabel>
+
+                              <FormControl>
+                                <Select
+                                  {...field}
+                                  value={field.value === null ? '-1' : field.value}
+                                  onValueChange={(value) =>
+                                    field.onChange(value === '-1' ? null : value)
+                                  }
+                                >
+                                  <SelectTrigger
+                                    loading={isLoadingEmails}
+                                    className="bg-background"
+                                  >
+                                    <SelectValue />
+                                  </SelectTrigger>
+
+                                  <SelectContent>
+                                    {emails.map((email) => (
+                                      <SelectItem key={email.id} value={email.id}>
+                                        {email.email}
+                                      </SelectItem>
+                                    ))}
+
+                                    <SelectItem value={'-1'}>Clickesignature</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </FormControl>
+
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      )}
+
+                      <FormField
+                        control={form.control}
+                        name="meta.emailReplyTo"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>
+                              <Trans>Reply To Email</Trans>{' '}
+                              <span className="text-muted-foreground">(Optional)</span>
+                            </FormLabel>
+
+                            <FormControl>
+                              <Input {...field} />
+                            </FormControl>
+
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="meta.subject"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>
+                              <Trans>
+                                Subject <span className="text-muted-foreground">(Optional)</span>
+                              </Trans>
+                            </FormLabel>
+
+                            <FormControl>
+                              <Input {...field} />
+                            </FormControl>
+
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="meta.message"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex flex-row items-center">
+                              <Trans>Message</Trans>{' '}
+                              <span className="text-muted-foreground">(Optional)</span>
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <InfoIcon className="mx-2 h-4 w-4" />
+                                </TooltipTrigger>
+                                <TooltipContent className="text-muted-foreground p-4">
+                                  <DocumentSendEmailMessageHelper />
+                                </TooltipContent>
+                              </Tooltip>
+                            </FormLabel>
+
+                            <FormControl>
+                              <Textarea className="bg-background h-16 resize-none" {...field} />
+                            </FormControl>
+
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <DocumentEmailCheckboxes
+                        value={emailSettings}
+                        onChange={(value) => form.setValue('meta.emailSettings', value)}
+                      />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            )}
+
+            <Accordion type="multiple">
+              <AccordionItem value="advanced-options" className="border-none">
+                <AccordionTrigger className="text-foreground rounded border px-3 py-2 text-left hover:bg-neutral-200/30 hover:no-underline">
+                  <Trans>Advanced Options</Trans>
+                </AccordionTrigger>
+
+                <AccordionContent className="text-muted-foreground -mx-1 px-1 pt-4 text-sm leading-relaxed">
+                  <div className="flex flex-col space-y-6">
+                    <FormField
+                      control={form.control}
+                      name="externalId"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex flex-row items-center">
+                            <Trans>External ID</Trans>{' '}
+                            <Tooltip>
+                              <TooltipTrigger>
+                                <InfoIcon className="mx-2 h-4 w-4" />
+                              </TooltipTrigger>
+
+                              <TooltipContent className="text-muted-foreground max-w-xs">
+                                <Trans>
+                                  Add an external ID to the template. This can be used to identify
+                                  in external systems.
+                                </Trans>
+                              </TooltipContent>
+                            </Tooltip>
+                          </FormLabel>
+
+                          <FormControl>
+                            <Input className="bg-background" {...field} />
+                          </FormControl>
+
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="meta.dateFormat"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            <Trans>Date Format</Trans>
+                          </FormLabel>
+
+                          <FormControl>
+                            <Select {...field} onValueChange={field.onChange}>
+                              <SelectTrigger className="bg-background">
+                                <SelectValue />
+                              </SelectTrigger>
+
+                              <SelectContent>
+                                {DATE_FORMATS.map((format) => (
+                                  <SelectItem key={format.key} value={format.value}>
+                                    {format.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="meta.timezone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            <Trans>Time Zone</Trans>
+                          </FormLabel>
+
+                          <FormControl>
+                            <Combobox
+                              className="bg-background time-zone-field"
+                              options={TIME_ZONES}
+                              {...field}
+                              onChange={(value) => value && field.onChange(value)}
+                            />
+                          </FormControl>
+
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="meta.redirectUrl"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex flex-row items-center">
+                            <Trans>Redirect URL</Trans>{' '}
+                            <Tooltip>
+                              <TooltipTrigger>
+                                <InfoIcon className="mx-2 h-4 w-4" />
+                              </TooltipTrigger>
+
+                              <TooltipContent className="text-muted-foreground max-w-xs">
+                                <Trans>
+                                  Add a URL to redirect the user to once the document is signed
+                                </Trans>
+                              </TooltipContent>
+                            </Tooltip>
+                          </FormLabel>
+
+                          <FormControl>
+                            <Input className="bg-background" {...field} />
+                          </FormControl>
+
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </fieldset>
         </Form>
       </DocumentFlowFormContainerContent>
