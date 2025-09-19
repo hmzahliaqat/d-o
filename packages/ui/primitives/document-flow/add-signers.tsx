@@ -20,9 +20,9 @@ import { ZRecipientAuthOptionsSchema } from '@documenso/lib/types/document-auth'
 import { nanoid } from '@documenso/lib/universal/id';
 import { canRecipientBeModified as utilCanRecipientBeModified } from '@documenso/lib/utils/recipients';
 import { AnimateGenericFadeInOut } from '@documenso/ui/components/animate/animate-generic-fade-in-out';
+import { EmployeeSelector } from '@documenso/ui/components/employee/employee-selector';
 import { RecipientActionAuthSelect } from '@documenso/ui/components/recipient/recipient-action-auth-select';
 import { RecipientRoleSelect } from '@documenso/ui/components/recipient/recipient-role-select';
-import { EmployeeSelector } from '@documenso/ui/components/employee/employee-selector';
 import { cn } from '@documenso/ui/lib/utils';
 
 import {
@@ -389,9 +389,87 @@ export const AddSignersFormPartial = ({
 
         <AnimateGenericFadeInOut motionKey={showAdvancedSettings ? 'Show' : 'Hide'}>
           <Form {...form}>
+            <FormField
+              control={form.control}
+              name="signingOrder"
+              render={({ field }) => (
+                <FormItem className="mb-6 flex flex-row items-center space-x-2 space-y-0">
+                  <FormControl>
+                    <Checkbox
+                      {...field}
+                      id="signingOrder"
+                      checked={field.value === DocumentSigningOrder.SEQUENTIAL}
+                      onCheckedChange={(checked) => {
+                        if (!checked && hasAssistantRole) {
+                          setShowSigningOrderConfirmation(true);
+                          return;
+                        }
 
+                        field.onChange(
+                          checked ? DocumentSigningOrder.SEQUENTIAL : DocumentSigningOrder.PARALLEL,
+                        );
 
+                        // If sequential signing is turned off, disable dictate next signer
+                        if (!checked) {
+                          form.setValue('allowDictateNextSigner', false);
+                        }
+                      }}
+                      disabled={isSubmitting || hasDocumentBeenSent}
+                    />
+                  </FormControl>
 
+                  <FormLabel
+                    htmlFor="signingOrder"
+                    className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    <Trans>Enable signing order</Trans>
+                  </FormLabel>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="allowDictateNextSigner"
+              render={({ field: { value, ...field } }) => (
+                <FormItem className="mb-6 flex flex-row items-center space-x-2 space-y-0">
+                  <FormControl>
+                    <Checkbox
+                      {...field}
+                      id="allowDictateNextSigner"
+                      checked={value}
+                      onCheckedChange={field.onChange}
+                      disabled={isSubmitting || hasDocumentBeenSent || !isSigningOrderSequential}
+                    />
+                  </FormControl>
+
+                  <div className="flex items-center">
+                    <FormLabel
+                      htmlFor="allowDictateNextSigner"
+                      className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      <Trans>Allow signers to dictate next signer</Trans>
+                    </FormLabel>
+
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="text-muted-foreground ml-1 cursor-help">
+                          <HelpCircle className="h-3.5 w-3.5" />
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent className="max-w-80 p-4">
+                        <p>
+                          <Trans>
+                            When enabled, signers can choose who should sign next in the sequence
+                            instead of following the predefined order.
+                          </Trans>
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                </FormItem>
+              )}
+            />
 
             <DragDropContext
               onDragEnd={onDragEnd}
@@ -485,10 +563,12 @@ export const AddSignersFormPartial = ({
                               )}
 
                               {teamId && (
-                                <div className={cn('col-span-10', {
-                                  'col-span-12': isSigningOrderSequential,
-                                  'mb-4': true,
-                                })}>
+                                <div
+                                  className={cn('col-span-10', {
+                                    'col-span-12': isSigningOrderSequential,
+                                    'mb-4': true,
+                                  })}
+                                >
                                   <FormLabel>
                                     <Trans>Select from Employees</Trans>
                                   </FormLabel>
