@@ -100,32 +100,6 @@ export const SettingsMobileNav = ({ className, ...props }: SettingsMobileNavProp
             </Button>
           </Link>
 
-          <Link to="/settings/tokens">
-            <Button
-              variant="ghost"
-              className={cn(
-                'w-full justify-start',
-                pathname?.startsWith('/settings/tokens') && 'bg-secondary',
-              )}
-            >
-              <BracesIcon className="mr-2 h-5 w-5" />
-              <Trans>API Tokens</Trans>
-            </Button>
-          </Link>
-
-          <Link to="/settings/webhooks">
-            <Button
-              variant="ghost"
-              className={cn(
-                'w-full justify-start',
-                pathname?.startsWith('/settings/webhooks') && 'bg-secondary',
-              )}
-            >
-              <WebhookIcon className="mr-2 h-5 w-5" />
-              <Trans>Webhooks</Trans>
-            </Button>
-          </Link>
-
           <Link to="/settings/billing">
             <Button
               variant="ghost"
