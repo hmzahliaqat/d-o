@@ -91,7 +91,9 @@ export default function Layout({ loaderData, params }: Route.ComponentProps) {
   }
   const trialExpired = trialEnabled ? isTrialExpired(user?.createdAt, 3) : false;
   const trialDaysLeft = trialEnabled ? getTrialDaysLeft(user?.createdAt, 3) : null;
+  // Hide trial banners on billing and settings pages if needed
   const isBillingRoute = location.pathname.includes('/settings/billing');
+  const isSettingsRoute = location.pathname.includes('/settings');
 
   useEffect(() => {
     if (trialEnabled && trialExpired && !isBillingRoute) {
@@ -124,7 +126,7 @@ export default function Layout({ loaderData, params }: Route.ComponentProps) {
     </div>
   ) : null;
 
-  if (!hasActiveSubscription && trialEnabled && trialExpired && !isBillingRoute) {
+  if (!hasActiveSubscription && trialEnabled && trialExpired && !isBillingRoute && !isSettingsRoute) {
     return (
       <>{trialBanner}</>
     );
@@ -163,8 +165,9 @@ export default function Layout({ loaderData, params }: Route.ComponentProps) {
   return (
     <OrganisationProvider organisation={currentOrganisation}>
       <TeamProvider team={currentTeam || null}>
-        {!hasActiveSubscription && trialDaysLeftBanner}
-        {!hasActiveSubscription && trialBanner}
+        {/* Only show trial banners if not on settings or billing routes */}
+        {!hasActiveSubscription && !isSettingsRoute && trialDaysLeftBanner}
+        {!hasActiveSubscription && !isSettingsRoute && trialBanner}
         <OrganisationBillingBanner />
         {!user.emailVerified && <VerifyEmailBanner email={user.email} />}
         {banner && <AppBanner banner={banner} />}
