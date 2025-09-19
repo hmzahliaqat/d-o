@@ -87,10 +87,7 @@ export const TemplatesTable = ({
               </TooltipTrigger>
 
               <TooltipContent className="text-foreground max-w-md space-y-2 !p-0">
-                <ul className="text-muted-foreground space-y-0.5 divide-y [&>li]:p-4">
-
-
-                </ul>
+                <ul className="text-muted-foreground space-y-0.5 divide-y [&>li]:p-4"></ul>
               </TooltipContent>
             </Tooltip>
           </div>
@@ -154,25 +151,25 @@ export const TemplatesTable = ({
 
   return (
     <div className="relative">
-      {/*{remaining.documents === 0 && (*/}
-      {/*  <Alert variant="warning" className="mb-4">*/}
-      {/*    <AlertTriangle className="h-4 w-4" />*/}
-      {/*    <AlertTitle>*/}
-      {/*      <Trans>Document Limit Exceeded!</Trans>*/}
-      {/*    </AlertTitle>*/}
-      {/*    <AlertDescription className="mt-2">*/}
-      {/*      <Trans>*/}
-      {/*        You have reached your document limit.{' '}*/}
-      {/*        <Link*/}
-      {/*          className="underline underline-offset-4"*/}
-      {/*          to={`/o/${organisation.url}/settings/billing`}*/}
-      {/*        >*/}
-      {/*          Upgrade your account to continue!*/}
-      {/*        </Link>*/}
-      {/*      </Trans>*/}
-      {/*    </AlertDescription>*/}
-      {/*  </Alert>*/}
-      {/*)}*/}
+      {remaining.documents === 0 && (
+        <Alert variant="warning" className="mb-4">
+          <AlertTriangle className="h-4 w-4" />
+          <AlertTitle>
+            <Trans>Document Limit Exceeded!</Trans>
+          </AlertTitle>
+          <AlertDescription className="mt-2">
+            <Trans>
+              You have reached your document limit.{' '}
+              <Link
+                className="underline underline-offset-4"
+                to={`/o/${organisation.url}/settings/billing`}
+              >
+                Upgrade your account to continue!
+              </Link>
+            </Trans>
+          </AlertDescription>
+        </Alert>
+      )}
 
       <DataTable
         columns={columns}
