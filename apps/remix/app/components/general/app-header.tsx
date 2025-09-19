@@ -102,7 +102,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
         )}
 
         <div className="md:ml-4">
-          {isPersonalLayout(organisations) ? <MenuSwitcher /> : <MenuSwitcher />}
+          {isPersonalLayout(organisations) ? <MenuSwitcher /> : <OrgMenuSwitcher />}
         </div>
 
         <div className="flex flex-row items-center space-x-4 md:hidden">
