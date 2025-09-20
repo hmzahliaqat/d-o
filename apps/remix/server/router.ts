@@ -31,11 +31,19 @@ const app = new Hono<HonoEnv>();
 
 // Enable CORS for all /api/* routes
 app.use('/api/*', cors({
-  origin: 'https://clickesignature.com',
+  origin: (origin) => {
+    if (!origin) return null
+    const allowed = [
+      'https://clickesignature.com',
+      'https://www.clickesignature.com',
+    ]
+    return allowed.includes(origin) ? origin : null
+  },
   allowMethods: ['GET', 'POST', 'OPTIONS'],
   allowHeaders: ['Authorization', 'Content-Type'],
   credentials: true,
-}));
+}))
+
 
 /**
  * Rate limiting for v1 and v2 API routes only.
