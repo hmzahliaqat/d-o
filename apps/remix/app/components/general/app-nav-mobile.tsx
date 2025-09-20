@@ -75,10 +75,10 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
           href: '/super-admin/settings',
           text: t`System Settings`,
         },
-        {
-          href: '/inbox',
-          text: t`Inbox`,
-        },
+        // {
+        //   href: '/inbox',
+        //   text: t`Inbox`,
+        // },
         {
           href: '/settings/profile',
           text: t`Settings`,
@@ -95,10 +95,10 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
 
     if (!teamUrl) {
       return [
-        {
-          href: '/inbox',
-          text: t`Inbox`,
-        },
+        // {
+        //   href: '/inbox',
+        //   text: t`Inbox`,
+        // },
         {
           href: '/settings/profile',
           text: t`Settings`,
@@ -124,10 +124,10 @@ export const AppNavMobile = ({ isMenuOpen, onMenuOpenChange }: AppNavMobileProps
         href: `/t/${teamUrl}/employees`,
         text: t`Employees`,
       },
-      {
-        href: '/inbox',
-        text: t`Inbox`,
-      },
+      // {
+      //   href: '/inbox',
+      //   text: t`Inbox`,
+      // },
       {
         href: '/settings/profile',
         text: t`Settings`,
