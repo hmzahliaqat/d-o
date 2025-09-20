@@ -6,6 +6,7 @@ import type { RequestIdVariables } from 'hono/request-id';
 import type { Logger } from 'pino';
 
 import { tsRestHonoApp } from '@documenso/api/hono';
+import { cors } from 'hono/cors';
 import { auth } from '@documenso/auth/server';
 import { API_V2_BETA_URL } from '@documenso/lib/constants/app';
 import { jobsClient } from '@documenso/lib/jobs/client';
@@ -27,6 +28,14 @@ export interface HonoEnv {
 }
 
 const app = new Hono<HonoEnv>();
+
+// Enable CORS for all /api/* routes
+app.use('/api/*', cors({
+  origin: 'https://clickesignature.com',
+  allowMethods: ['GET', 'POST', 'OPTIONS'],
+  allowHeaders: ['Authorization', 'Content-Type'],
+  credentials: true,
+}));
 
 /**
  * Rate limiting for v1 and v2 API routes only.
